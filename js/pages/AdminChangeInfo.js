@@ -14,9 +14,14 @@ export class AdminChangeInfo extends React.Component {
 
   getUserFromId = () => {
     get_user(this.props.match.params.id).done((user) => {
+      let role = false;
+      if ( user.hasOwnProperty('role') ){
+        role = user.role
+      }
+
       this.setState( {
         userEdit: user.user,
-        editRole: user.role,
+        editRole: role,
         editPermissions: user.permissions,
         loading: false
       })
@@ -40,7 +45,7 @@ export class AdminChangeInfo extends React.Component {
         <div className="content">
 
           {this.state.loading ? null :
-            <Settings_profile user_profile={this.state.userEdit} editRole={this.state.editRole} editPermissions={this.state.editPermissions}/>
+            <Settings_profile user_profile={this.state.userEdit} editRole={this.state.editRole} isAdmin={true} editPermissions={this.state.editPermissions}/>
           }
 
 

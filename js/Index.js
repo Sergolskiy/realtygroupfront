@@ -52,7 +52,7 @@ class Index extends React.Component {
 
       get_user_access_control().done((response) => {
         window.localStorage.setItem('access', JSON.stringify(response))
-        console.log(JSON.parse(window.localStorage.getItem('access')));
+
       })
 
     }

@@ -171,6 +171,7 @@ export class Contact extends React.PureComponent {
         document.title = '';
         document.title = contact.name;
 
+        let permissions = JSON.parse(window.localStorage.getItem('access')).permissions;
 
         const contact_options = [
             {
@@ -199,7 +200,8 @@ export class Contact extends React.PureComponent {
                     </div>
 
                     {
-                        isTabMainShow && rightEditDel && (
+                        // isTabMainShow && rightEditDel && (
+                          isTabMainShow && !permissions.hasOwnProperty('editDelContacts') && permissions.editDelContacts.hasOwnProperty('edit') && (
                             isEdit ?
                             <div className="d-flex align-items-center ml-auto">
                                 <ButtonSave handler={save}/>

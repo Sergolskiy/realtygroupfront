@@ -124,6 +124,18 @@ export class Settings_users_coworker extends React.PureComponent {
     canDelUsers = true;
     return (
       <div className="table-suite">
+        {
+          canDelUsers && (
+            show_archived_users ?
+              <button className="btn btn-success" data-archived={0} onClick={change_archived}>
+                Активные пользователи
+              </button> :
+              <button className="btn btn-success" data-archived={1} onClick={change_archived}>
+                Удаленные пользователи
+              </button>
+          )
+        }
+
         <table className="table">
           <thead>
           <tr>
@@ -185,21 +197,12 @@ export class Settings_users_coworker extends React.PureComponent {
           </tbody>
         </table>
 
-        {
-          canDelUsers && (
-            show_archived_users ?
-              <button className="btn btn-success" data-archived={0} onClick={change_archived}>
-                Активные пользователи
-              </button> :
-              <button className="btn btn-success" data-archived={1} onClick={change_archived}>
-                Удаленные пользователи
-              </button>
-          )
-        }
+
 
         {/*<img src="/images/settings-users-5.jpg"/>*/}
 
-        <div className={"popup-del-user custom-popup" + (this.state.isOpenDelete ? ' open' : '')} onClick={(e) => {e.target.classList[0] === 'popup-del-user' ? this.closeDeletePopup : ''}}>
+        <div className={"popup-del-user custom-popup" + (this.state.isOpenDelete ? ' open' : '')} onClick={(e) => {
+          e.target.classList[0] === 'popup-del-user' ? this.closeDeletePopup() : ''}}>
           <div className="custom-popup__inner">
             <div className="custom-popup__header">
               <div className="custom-popup__name">

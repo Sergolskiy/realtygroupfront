@@ -154,7 +154,7 @@ export class External_sources extends React.PureComponent {
         const arrAreas = ['Жовтневый', 'Ингулецкий', 'Долгинцевский', 'Терновской', 'Дзержинский', 'Центрально-Городской', 'Саксаганский'];
         const optionsAreas = arrAreas.map(item => ({value: item, label: item}));
 
-
+        let permissions = JSON.parse(window.localStorage.getItem('access')).permissions;
 
         return (
             <>
@@ -171,7 +171,8 @@ export class External_sources extends React.PureComponent {
                         {
                             object_to_add ?
                                 <button onClick={modeAddOff}>Вернуться к списку</button> :
-                                data.rights.addFromExternalSources.includes(user_profile.id) && <input type="file" accept="text/csv" onChange={handleFileSelect}/>
+                                // data.rights.addFromExternalSources.includes(user_profile.id) && <input type="file" accept="text/csv" onChange={handleFileSelect}/>
+                                permissions.hasOwnProperty('addFromExternalSources') && permissions.addFromExternalSources.hasOwnProperty('add') && <input type="file" accept="text/csv" onChange={handleFileSelect}/>
                         }
                         <div>Кол-во карточек: {parser_cards_query.total}, дата загрузки: {undefsafe(parser_cards, '0.created_at')}</div>
                     </div>

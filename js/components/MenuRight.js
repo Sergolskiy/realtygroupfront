@@ -16,6 +16,8 @@ export class MenuRight extends React.PureComponent {
 
         const showSections = location.hostname !== 'crm.realtygroup.biz';
 
+        let permissions = JSON.parse(window.localStorage.getItem('access')).permissions;
+        let role = JSON.parse(window.localStorage.getItem('access')).role;
 
         return (
             <div className="substrate" id="substrate">
@@ -88,10 +90,12 @@ export class MenuRight extends React.PureComponent {
                             <span>Внешние источники</span>
                         </Link>
 
-                        <Link to="/admin" className="_other">
-                            <i className="mdi mdi-panda"/>
-                            <span>Админка</span>
-                        </Link>
+                        {role === 'ROLE_ADMIN' &&
+                            <Link to="/admin" className="_other">
+                                <i className="mdi mdi-panda"/>
+                                <span>Админка</span>
+                            </Link>
+                        }
 
                     </div>
 

@@ -82,6 +82,7 @@ class Cards extends React.PureComponent {
 
         const defaultStages = func_defaultStages(dealtype, ['successfully', 'poorly', 'statistics']);
 
+        let permissions = JSON.parse(window.localStorage.getItem('access')).permissions;
 
         return (
             <>
@@ -134,6 +135,7 @@ class Cards extends React.PureComponent {
 
                 <div className="content">
                     <div className="wh-100 overflow-auto">
+                        { permissions.hasOwnProperty('cards') && permissions.cards.hasOwnProperty('see') ?
                         <Cards_table
                             dealtype={dealtype}
                             dealdirection={dealdirection}
@@ -147,6 +149,7 @@ class Cards extends React.PureComponent {
                             ref={el => (this.componentRef = el)}
                             print_mode={this.state.print_mode}
                         />
+                        : 'У вас не достаточно прав для просмотра' }
                     </div>
                 </div>
 

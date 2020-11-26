@@ -81,6 +81,8 @@ export class Card_main extends React.PureComponent {
 
         const presentationMode = stor.local.get('presentationMode');
 
+        let permissions = JSON.parse(window.localStorage.getItem('access')).permissions;
+
         return (
             <div className="Card_main">
 
@@ -118,8 +120,11 @@ export class Card_main extends React.PureComponent {
                                         {street}
                                     </Link>
                                 }
-                                {(seeCardAddress && !presentationMode && cardInfo.building) ? ', ' + cardInfo.building + ' д' : ''}
-                                {(seeCardAddress && !presentationMode && cardInfo.apartment) ? ', ' + cardInfo.apartment + ' кв' : ''}
+                                {/*{(seeCardAddress && !presentationMode && cardInfo.building) ? ', ' + cardInfo.building + ' д' : ''}*/}
+                                {/*{(seeCardAddress && !presentationMode && cardInfo.apartment) ? ', ' + cardInfo.apartment + ' кв' : ''}*/}
+                                {(permissions.hasOwnProperty('seeCardAddress') && permissions.seeCardAddress.hasOwnProperty('see') && !presentationMode && cardInfo.building) ? ', ' + cardInfo.building + ' д' : ''}
+                                {(permissions.hasOwnProperty('seeCardAddress') && permissions.seeCardAddress.hasOwnProperty('see') && !presentationMode && cardInfo.apartment) ? ', ' + cardInfo.apartment + ' кв' : ''}
+
                             </td>
                         </tr>
 
@@ -210,7 +215,8 @@ export class Card_main extends React.PureComponent {
                         }
 
                         {
-                            seeCardContact &&
+                            // seeCardContact &&
+                            permissions.hasOwnProperty('seeCardContact') && permissions.seeCardContact.hasOwnProperty('see') &&
                             <tr>
                                 <td>
                                     <i className="mdi mdi-account-outline color-darkgray fs22"

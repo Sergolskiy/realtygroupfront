@@ -22,6 +22,7 @@
   margin-bottom: 15px;
 }
 
+.settings-ip input,
 .login-page .form input{
   background-color: hsl(0,0%,100%);
   border-color: hsl(0,0%,80%);
@@ -80,4 +81,73 @@
   display: flex;
   margin-top: 30px;
   justify-content: space-between;
+}
+
+.checkin-page{
+  width: 740px;
+  margin-bottom: 400px;
+}
+
+.checkin-page form{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.checkin-page input{
+  width: 48% !important;
+}
+
+.settings-ip__inner{
+  padding: 0 20px;
+}
+
+.settings-ip__add{
+  display: flex;
+  flex-direction: column;
+  max-width: 460px;
+}
+
+.settings-ip__add input{
+  height: 38px;
+  padding-left: 15px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.settings-ip__list{
+  padding: 20px;
+  border: 1px solid #eee;
+  margin: 20px 0;
+  max-width: 460px;
+}
+
+.settings-ip__item{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.settings-ip__item:last-child{
+  margin-bottom: 0;
+}
+
+.settings-ip__desc{
+  max-width: 170px;
+  width: 100%;
+  font-size: 14px;
+}
+
+.settings-ip__remove{
+  cursor: pointer;
+}
+
+.settings-ip__title{
+  font-size: 19px;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+.settings-ip__ip{
+  width: 110px;
 }

@@ -184,7 +184,7 @@ export class Checkin extends React.PureComponent {
     const message = messages.map((item, i) => <p className='message _error' key={i}>{item}</p>);
 
     return (
-      <div className="login-page">
+      <div className="login-page checkin-page">
         {
           success ?
             <div className="p-3">

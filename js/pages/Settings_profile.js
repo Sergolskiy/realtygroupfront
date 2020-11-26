@@ -115,23 +115,27 @@ export class Settings_profile extends React.Component {
 
   saveChanges = () => {
     let {user_profile} = this.props;
+    let {editRole} = this.props;
 
     console.log(user_profile);
 
-    let permissionsIds = this.state.permissionsIds;
-    let ids = '';
-    permissionsIds.map((item) => {
-      if (ids === '') {
-        ids = ids + item.id
-      } else {
-        ids = ids + ',' + item.id
+    if(editRole !== undefined) {
+      let permissionsIds = this.state.permissionsIds;
+      let ids = '';
+      permissionsIds.map((item) => {
+        if (ids === '') {
+          ids = ids + item.id
+        } else {
+          ids = ids + ',' + item.id
+        }
+      });
+
+      if(this.state.rolesId !== 1){
+        user_profile.permissionsIds = ids;
+        user_profile.role_id = this.state.rolesId.id;
       }
-    });
-    console.log(this.state.rolesId);
-    if(this.state.rolesId !== 1){
-      user_profile.permissionsIds = ids;
-      user_profile.role_id = this.state.rolesId.id;
     }
+
 
 
     put_user_profile(user_profile.id, user_profile, true, 5, false).done(function (user_profile) {
@@ -214,6 +218,7 @@ export class Settings_profile extends React.Component {
 
     const {user_profile} = this.props;
     const {editRole} = this.props;
+    const {isAdmin} = this.props;
     const {editPermissions} = this.props;
     console.log(user_profile);
     const {agency, office, offices_partition, role, social_networks} = this.state;
@@ -461,50 +466,53 @@ export class Settings_profile extends React.Component {
 
         </div>
 
-        <div className="p-2" style={{'width': '500px'}}>
-          <div className="flex-between m-1">
-            <div className="inputGroup ">
-              <Select
-                styles={{
-                  ...selectStyleDefault
-                }}
-                isMulti={false}
-                isClearable={false}
-                isSearchable={false}
-                className="w-100 login-select"
-                placeholder={'Роль'}
-                defaultValue={editRole}
-                options={this.state.roles}
-                isDisabled={editRole.id === 1 ? true : false}
-                onChange={el => {
-                  this.setState({rolesId: el})
-                }
-                }
-              />
-              <span/>
+        {isAdmin !== undefined ?
+          <div className="p-2" style={{'width': '500px'}}>
+            <div className="flex-between m-1">
+              <div className="inputGroup ">
+                <Select
+                  styles={{
+                    ...selectStyleDefault
+                  }}
+                  isMulti={false}
+                  isClearable={false}
+                  isSearchable={false}
+                  className="w-100 login-select"
+                  placeholder={'Роль'}
+                  defaultValue={editRole !== false ? editRole : null}
+                  options={this.state.roles}
+                  isDisabled={editRole !== false && editRole.id === 1 ? true : false}
+                  onChange={el => {
+                    this.setState({rolesId: el})
+                  }
+                  }
+                />
+                <span/>
+              </div>
+            </div>
+            <div className="flex-between m-1">
+              <div className="inputGroup ">
+                <Select
+                  isMulti={true}
+                  isClearable={false}
+                  isSearchable={false}
+                  className="w-100 mb-15"
+                  placeholder={'Права'}
+                  options={this.state.permissions}
+                  isDisabled={editRole !== false && editRole.id === 1 ? true : false}
+                  defaultValue={editPermissions}
+                  onChange={el => {
+                    console.log(el);
+                    this.setState({permissionsIds: el})
+                  }
+                  }
+                />
+                <span/>
+              </div>
             </div>
           </div>
-          <div className="flex-between m-1">
-            <div className="inputGroup ">
-              <Select
-                isMulti={true}
-                isClearable={false}
-                isSearchable={false}
-                className="w-100 mb-15"
-                placeholder={'Права'}
-                options={this.state.permissions}
-                isDisabled={editRole.id === 1 ? true : false}
-                defaultValue={editPermissions}
-                onChange={el => {
-                  console.log(el);
-                  this.setState({permissionsIds: el})
-                }
-                }
-              />
-              <span/>
-            </div>
-          </div>
-        </div>
+        : null}
+
 
 
       </div>

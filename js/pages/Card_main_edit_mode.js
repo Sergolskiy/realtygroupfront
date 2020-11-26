@@ -72,6 +72,7 @@ export class Card_main_edit_mode extends React.Component {
 
         const reason_for_sale = fields['reason_for_sale'] || {};
 
+        let permissions = JSON.parse(window.localStorage.getItem('access')).permissions;
 
         return (
             <div className="Card_main">
@@ -223,13 +224,15 @@ export class Card_main_edit_mode extends React.Component {
 
 
                     {
-                        data.rights.changeCardContact.includes(user_profile.id) &&
+                        // data.rights.changeCardContact.includes(user_profile.id) &&
+                        permissions.hasOwnProperty('changeCardContact') && permissions.changeCardContact.hasOwnProperty('edit') &&
                         <Card_main_change_contact
                             card_contact_name={undefsafe(cardInfo, 'card_contact.name')}
                             agency_id={user_profile.agency_id}
                             changeCardInfo={changeCardInfo}
                         />
                     }
+
 
 
 

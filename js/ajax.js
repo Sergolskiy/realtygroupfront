@@ -1033,3 +1033,70 @@ function get_analytics_areas(areas) {
     })
 }
 
+
+// Получить IP
+function get_access_ip() {
+    return $.ajax({
+        url: url_backend + '/api/ip-access-list',
+        type: 'GET',
+        dataType: 'json',
+        beforeSend: setHeader,
+    })
+}
+
+
+// Добасить IP
+function add_access_ip(data) {
+    return $.ajax({
+        url: url_backend + '/api/ip-access/store',
+        type: 'POST',
+        dataType: 'json',
+        beforeSend: setHeader,
+        data: data
+    })
+}
+
+// Изменить IP
+function update_access_ip(data, id) {
+    return $.ajax({
+        url: url_backend + `/api/access/${id}/update`,
+        type: 'PUT',
+        dataType: 'json',
+        beforeSend: setHeader,
+        data: data
+    })
+}
+
+// Удалить IP
+function remove_access_ip(id) {
+    return $.ajax({
+        url: url_backend + `/api/ip-access/${id}/delete`,
+        type: 'DELETE',
+        dataType: 'json',
+        beforeSend: setHeader
+    })
+}
+
+
+// Изменить Comment
+function update_commet(data) {
+    return $.ajax({
+        url: url_backend + `/api/update-comment`,
+        type: 'PUT',
+        dataType: 'json',
+        beforeSend: setHeader,
+        data: data
+    })
+}
+
+// Удалить Comment
+function remove_comment(data) {
+    return $.ajax({
+        url: url_backend + `/api/delete-comment`,
+        type: 'POST',
+        dataType: 'json',
+        beforeSend: setHeader,
+        data: data
+    })
+}
+

@@ -365,6 +365,7 @@ export class Card extends React.Component {
                 (data.rights.delCards[dealtype] || []).includes(user_profile.id) // Если юзер есть в списке разрешённых
             );
 
+        let permissions = JSON.parse(window.localStorage.getItem('access')).permissions;
 
         return (
             <>
@@ -391,8 +392,10 @@ export class Card extends React.Component {
                                 </div>
                                 :
                                 <div className="d-flex">
-                                    {rightEdit && <ButtonEdit handler={edit}/>}
-                                    {rightDel && <ButtonDel modalId="modalDelCard"/>}
+                                    { permissions.hasOwnProperty('cards') && permissions.cards.hasOwnProperty('edit') && <ButtonEdit handler={edit}/>}
+                                    { permissions.hasOwnProperty('cards') && permissions.cards.hasOwnProperty('delete') && <ButtonDel modalId="modalDelCard"/>}
+                                    {/*{rightEdit && <ButtonEdit handler={edit}/>}*/}
+                                    {/*{rightDel && <ButtonDel modalId="modalDelCard"/>}*/}
                                 </div>
                         )
                     }
