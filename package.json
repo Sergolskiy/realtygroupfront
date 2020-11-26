@@ -1,0 +1,43 @@
+{
+  "name": "crm.webpack2",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode development",
+    "build_p": "webpack --mode production"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/preset-env": "^7.9.0",
+    "@babel/preset-react": "^7.9.4",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-transform-remove-console": "^6.9.4",
+    "depcheck": "^0.8.4",
+    "npm-check": "^5.9.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-redux": "^7.2.0",
+    "react-router-dom": "^5.1.2",
+    "redux": "^4.0.5",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
+  },
+  "dependencies": {
+    "history": "^4.10.1",
+    "prop-types": "^15.7.2",
+    "rc-progress": "^2.5.2",
+    "react-addons-shallow-compare": "^15.6.2",
+    "react-ga": "^2.7.0",
+    "react-router": "^5.1.2",
+    "react-select": "^3.1.0",
+    "react-to-print": "^2.6.3",
+    "react-toastify": "^5.5.0",
+    "react-window": "^1.8.5"
+  }
+}

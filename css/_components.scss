@@ -1,0 +1,113 @@
+.Card_main {
+  display: flex;
+  flex-wrap: wrap;
+  ._block1, ._block2, ._block3 {
+    padding: calc(5px + 0.6%);
+  }
+  ._block1 {
+    flex: 1 1 25%;
+    max-width: 340px;
+    min-width: 220px;
+  }
+  ._block2 {
+    flex: 1 1 25%;
+    max-width: 400px;
+    min-width: 270px;
+    >div:nth-child(odd) { // Чередование цветов
+      //background-color: #f8f9fa;
+    }
+  }
+  ._block3 {
+    flex: 1 1 50%;
+    width: 300px;
+    max-width: 100%;
+  }
+
+  // Block #3
+  ._description {
+    position: relative;
+    width: 100%;
+    padding: 10px;
+    white-space: pre-wrap;
+    >i {
+      position: absolute;
+      font-size: 26px;
+      bottom: 6px;
+      right: 4px;
+      cursor: pointer
+    }
+  }
+  ._description-edit {
+    width: 100%;
+    height: 300px;
+    margin-top: 5px;
+  }
+  ._comment {
+    width: 100%;
+    padding: 10px;
+    white-space: pre-wrap
+  }
+  ._comment-edit {
+    width: 100%;
+    height: 200px;
+  }
+  ._btns {
+    font-size: 26px;
+    >i {
+      margin-right: 10px;
+      cursor: pointer;
+    }
+  }
+  .tabs {
+    //height: 220px;
+  }
+  .tab-content {
+    //height: 210px;
+    //overflow-y: auto;
+  }
+}
+
+
+.Card_main_foto {
+  display: flex;
+  flex-wrap: wrap;
+  //overflow-x: auto;
+  padding: 4px;
+}
+
+.Stage_down {
+  font-size: 12px;
+  line-height: 1;
+  padding: 5px 0;
+}
+
+.Stage_up {
+  width: 230px;
+}
+
+.External_sources_add {
+  textarea {
+    width: 600px;
+    height: 120px;
+  }
+  ._empty {
+    background-color: antiquewhite;
+    border-left: 2px solid red;
+  }
+  ._btn_add {
+    display: flex;
+    flex-direction: row-reverse;
+    button {
+      margin: 0 30px 30px 0;
+    }
+  }
+}
+
+.Share_cards {
+  padding: 3%;
+  .card {
+    width: 500px;
+    max-width: 100%;
+    margin: auto auto 30px;
+  }
+}

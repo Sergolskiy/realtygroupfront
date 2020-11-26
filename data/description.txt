@@ -1,0 +1,45 @@
+У агентства города нет.
+Офис находится в определенном городе. Список городов для создания офисов отсутствует. Нужно создать либо использовать все города
+Список городов {} находится в файле cities.json. В этом же файле содержатся села
+Подробности города (заголовок, районы, ориентиры, улицы) находятся в отдельных файлах в папке cities
+Список категорий [] находится (на самом деле в БД) в файле categories.json. В этом же присваиваются поля для каждой категории и подкатегории.
+Список полей [] находится в файле fields.json. В этом же файле находятся значения полей и их типы
+
+
+
+- Добавить такой пункт, как неважно
+- Карточку сделать отдельно под заявки
+- В мобе в шапке не влазит полностью название. Сделать пальцем. Лучше в две строки
+- cardInfo.card_agency - пустое приходит. Вроде бы и не нужно, но почему пустое
+
+
+
+fas fa-undo
+mdi mdi-refresh
+
+far fa-image
+mdi mdi-image-area
+
+far fa-user
+mdi mdi-account-outline
+
+fas fa-users
+mdi mdi-account-group
+
+fas fa-home
+mdi mdi-home-city-outline
+
+fas fa-align-left
+mdi mdi-format-align-left
+
+fas fa-file-alt
+mdi mdi-file-document
+
+fas fa-microphone
+mdi mdi-voicemail
+
+fab fa-viber
+
+fab fa-telegram-plane
+mdi mdi-telegram
+

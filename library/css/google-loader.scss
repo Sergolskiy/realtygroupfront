@@ -1,0 +1,50 @@
+$font: 'Montserrat', sans-serif;
+
+$blue: #6197b7;
+$red: #e05432;
+$yellow: #ffc310;
+$green: #28a745;
+$colors-list: $blue $red $yellow $green;
+
+.google-loader {
+
+  // Нововведения
+  position: fixed;
+  width: 100%;
+  background-color: #ffffff80;
+
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  span {
+    display: inline-block;
+    margin-top: 10px;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+
+    &:not(:first-child) {
+      margin-left: 10px;
+    }
+  }
+
+  @each $current-color in $colors-list {
+    $i: index($colors-list, $current-color);
+    $t: $i * -0.25;
+    span:nth-child(#{$i}) {
+      background: $current-color;
+      animation: move 0.5s ease-in-out (#{$t}s) infinite alternate;
+    }
+  }
+}
+
+@keyframes move {
+  from {
+    transform: translateY(-15px);
+  }
+  to {
+    transform: translateY(9px);
+  }
+}

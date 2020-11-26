@@ -1,0 +1,83 @@
+
+.login-page {
+  width: 640px;
+  max-width: 100%;
+  padding: 2% 0 0;
+  margin: auto
+}
+
+.login-page .form{
+  max-width: 100%;
+}
+
+.login-select{
+  margin-bottom: 15px;
+}
+
+.login-select div[class*="ValueContainer"] {
+  height: 53px;
+}
+
+.mb-15{
+  margin-bottom: 15px;
+}
+
+.login-page .form input{
+  background-color: hsl(0,0%,100%);
+  border-color: hsl(0,0%,80%);
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.btn-style{
+  cursor: pointer;
+}
+
+.custom-popup{
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #0000007a;
+  height: 100vh;
+  z-index: 10;
+}
+
+.custom-popup.open{
+  display: block;
+}
+
+.custom-popup__inner{
+  max-width: 500px;
+  margin: 100px auto;
+  background: white;
+  padding: 20px;
+}
+
+.custom-popup__header{
+  position: relative;
+  border-bottom: 1px solid #d6d6d6;
+  margin: 0 -20px;
+  padding: 0 20px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.custom-popup__name{
+  font-size: 20px;
+}
+
+.custom-popup__close{
+  position: absolute;
+  top: -11px;
+  right: 12px;
+  cursor: pointer;
+}
+
+.custom-popup__btn{
+  display: flex;
+  margin-top: 30px;
+  justify-content: space-between;
+}

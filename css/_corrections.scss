@@ -1,0 +1,142 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.mdi {
+  line-height: 1;
+}
+
+input, select {
+  outline: none;
+}
+
+textarea {
+  border: 1px solid #E2E2E2;
+  border-radius: 3px;
+  padding: 5px 10px;
+}
+
+//input::placeholder {
+//  color: lightgrey;
+//}
+
+// Dropdown от bootstrap
+.dropdown-menu {
+  //right: 0 !important;
+  user-select: none;
+}
+.dropdown-item {
+  cursor: pointer;
+  &.active, &:active {
+    background-color: #28a745;
+  }
+}
+
+// List group
+.list-group-item.active {
+  background-color: #6197b7;
+  border-color: #6197b7;
+}
+
+
+// Пользовательский цвет в ripple эффектах
+.legitRipple-ripple {
+  background: #bfbfbf;
+}
+
+
+// Слайдер в карточке
+._card_main_photo {
+  .slider-pro { // У слайдера
+    &:not(.sp-full-screen) { // Не в полноэкранном режиме
+      .sp-full-screen-button { // Кнопка "На весь экран"
+        display: none; // Будет скрыта
+      }
+    }
+    .sp-full-screen-button { // Кнопка "На весь экран"
+      color: white; // Всегда белая
+    }
+  }
+  // Ленивая загрузка изображений в слайдере
+  .sp-thumbnail-container {
+    background-color: #ebebeb; // Фон всегда серый
+    cursor: pointer;
+    img {
+      opacity: 0; // Пока не прогрузилась фотография, она полностью прозрачная
+    }
+    img[style] { // Когда фотография полностью прогрузилась
+      opacity: 1;
+      transition: opacity 0.5s;
+    }
+  }
+}
+
+// Слайдер на расшареной странице
+._share_cards_slider {
+  // Ленивая загрузка изображений в слайдере
+  .sp-thumbnail-container {
+    background-color: #ebebeb; // Фон всегда серый
+    img {
+      opacity: 0; // Пока не прогрузилась фотография, она полностью прозрачная
+    }
+    img[style] { // Когда фотография полностью прогрузилась
+      opacity: 1;
+      transition: opacity 1s;
+    }
+  }
+}
+
+
+
+
+
+// Маска международного телефона на всю ширину
+.intl-tel-input {
+  width: 100%
+}
+
+.form-control[readonly] {
+  background: none;
+}
+
+audio {
+  display: block;
+  height: 34px;
+}
+
+.tab-content {
+  height: calc(100% - 45px);
+  overflow: auto;
+}
+
+.table {
+  td {
+    vertical-align: middle;
+  }
+}
+
+.Toastify__toast--info {
+  background: #6197b7;
+}
+
+.Toastify__toast--success {
+  background: #07bc0c;
+}
+
+.Toastify__toast--warning {
+  background: #ffc310;
+}
+
+.Toastify__toast--error {
+  background: #e05432;
+}
+
+// Элемент календаря "Очистить"
+.clear {
+  cursor: pointer;
+}
+
+//a {
+//  color: black !important;
+//  text-decoration: none !important;
+//}

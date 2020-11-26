@@ -1,0 +1,409 @@
+{
+  "sale": [
+    {
+      "value": "apartments",
+      "title": "Квартиры",
+      "fields": [
+        "number_of_floors",
+        "floors_house",
+        "number_rooms",
+        "total_area",
+        "living_area",
+        "kitchen_area",
+        "ceiling_height",
+        "bathroom",
+        "elevator",
+        "type_building",
+        "condition",
+        "heating",
+        "security",
+        "entrance_door",
+        "furniture",
+        "window",
+        "view_from_windows",
+        "garbage_chute",
+        "layout",
+        "corner",
+        "balcony",
+        "year_built"
+      ],
+      "subcategories": [
+        {
+          "value": "one_room",
+          "title": "1-к"
+        },
+        {
+          "value": "two_room",
+          "title": "2-к"
+        },
+        {
+          "value": "three_room",
+          "title": "3-к"
+        },
+        {
+          "value": "four_room",
+          "title": "4-к"
+        },
+        {
+          "value": "five_room",
+          "title": "5-к и более"
+        }
+      ]
+    },
+    {
+      "value": "houses_cottages",
+      "title": "Дома и дачи",
+      "fields": [
+        "number_rooms",
+        "floors_house",
+        "type_building",
+        "roof",
+        "total_area",
+        "living_area",
+        "kitchen_area",
+        "ceiling_height",
+        "condition",
+        "heating",
+        "electricity",
+        "water_pipes",
+        "bathroom",
+        "sewage",
+        "gas",
+        "security",
+        "land_area",
+        "how_plot_fenced",
+        "entrance_door",
+        "furniture",
+        "window",
+        "view_from_windows",
+        "layout",
+        "year_built"
+      ],
+      "subcategories": [
+        {
+          "value": "house",
+          "title": "Дом"
+        },
+        {
+          "value": "part_house",
+          "title": "Часть дома"
+        },
+        {
+          "value": "unfinished",
+          "title": "Недострой"
+        }
+      ]
+    },
+    {
+      "value": "garages",
+      "title": "Гаражи",
+      "fields": [
+        "floors_house",
+        "basement",
+        "ceiling",
+        "garage_width",
+        "garage_length",
+        "garage_height",
+        "total_area",
+        "gate_width",
+        "gate_height",
+        "electricity",
+        "security",
+        "limes",
+        "year_built"
+      ],
+      "subcategories": [
+        {
+          "value": "garage",
+          "title": "Гараж"
+        },
+        {
+          "value": "parking",
+          "title": "Паркинг"
+        }
+      ]
+    },
+    {
+      "value": "area",
+      "title": "Участки",
+      "fields": [
+        "electricity",
+        "water_pipes",
+        "sewage",
+        "gas",
+        "land_area",
+        "how_plot_fenced"
+      ],
+      "subcategories": [
+        {
+          "value": "for_housing",
+          "title": "Под жильё"
+        },
+        {
+          "value": "cottage",
+          "title": "Дачный"
+        },
+        {
+          "value": "commercial",
+          "title": "Коммерческий"
+        },
+        {
+          "value": "agricultural",
+          "title": "Сельскохозяйственный"
+        }
+      ]
+    },
+    {
+      "value": "commercial",
+      "title": "Коммерческая",
+      "fields": [
+        "number_of_floors",
+        "floors_house",
+        "number_rooms",
+        "type_building",
+        "total_area",
+        "living_area",
+        "kitchen_area",
+        "ceiling_height",
+        "condition",
+        "electricity",
+        "water_pipes",
+        "sewage",
+        "gas",
+        "security",
+        "entrance_door",
+        "furniture",
+        "window",
+        "heating",
+        "year_built"
+      ],
+      "subcategories": [
+        {
+          "value": "office",
+          "title": "Офис"
+        },
+        {
+          "value": "shop",
+          "title": "Магазин"
+        },
+        {
+          "value": "marketplace",
+          "title": "Торговая площадь"
+        },
+        {
+          "value": "storage",
+          "title": "Склад"
+        },
+        {
+          "value": "basement",
+          "title": "Подвальное помещение"
+        }
+      ]
+    }
+  ],
+  "rent": [
+    {
+      "value": "apartments",
+      "title": "Квартиры",
+      "fields": [
+        "number_of_floors",
+        "floors_house",
+        "number_rooms",
+        "household_appliances",
+        "will_live",
+        "elevator",
+        "type_building",
+        "total_area",
+        "living_area",
+        "kitchen_area",
+        "ceiling_height",
+        "condition",
+        "heating",
+        "bathroom",
+        "security",
+        "entrance_door",
+        "furniture",
+        "window",
+        "view_from_windows",
+        "garbage_chute",
+        "layout",
+        "corner",
+        "balcony",
+        "year_built"
+      ],
+      "subcategories": [
+        {
+          "value": "one_room",
+          "title": "1-к"
+        },
+        {
+          "value": "two_room",
+          "title": "2-к"
+        },
+        {
+          "value": "three_room",
+          "title": "3-к"
+        },
+        {
+          "value": "four_room",
+          "title": "4-к"
+        },
+        {
+          "value": "five_room",
+          "title": "5-к и более"
+        }
+      ]
+    },
+    {
+      "value": "houses_cottages",
+      "title": "Дома и дачи",
+      "fields": [
+        "number_rooms",
+        "floors_house",
+        "household_appliances",
+        "will_live",
+        "type_building",
+        "roof",
+        "total_area",
+        "living_area",
+        "kitchen_area",
+        "ceiling_height",
+        "condition",
+        "heating",
+        "electricity",
+        "water_pipes",
+        "bathroom",
+        "sewage",
+        "gas",
+        "security",
+        "land_area",
+        "how_plot_fenced",
+        "entrance_door",
+        "furniture",
+        "window",
+        "view_from_windows",
+        "layout",
+        "year_built"
+      ],
+      "subcategories": [
+        {
+          "value": "house",
+          "title": "Дом"
+        },
+        {
+          "value": "part_house",
+          "title": "Часть дома"
+        },
+        {
+          "value": "unfinished",
+          "title": "Недострой"
+        }
+      ]
+    },
+    {
+      "value": "garages",
+      "title": "Гаражи",
+      "fields": [
+        "floors_house",
+        "basement",
+        "ceiling",
+        "garage_width",
+        "garage_length",
+        "garage_height",
+        "total_area",
+        "gate_width",
+        "gate_height",
+        "electricity",
+        "security",
+        "limes"
+      ],
+      "subcategories": [
+        {
+          "value": "garage",
+          "title": "Гараж"
+        },
+        {
+          "value": "parking",
+          "title": "Паркинг"
+        }
+      ]
+    },
+    {
+      "value": "area",
+      "title": "Участки",
+      "fields": [
+        "electricity",
+        "water_pipes",
+        "sewage",
+        "gas",
+        "land_area",
+        "how_plot_fenced"
+      ],
+      "subcategories": [
+        {
+          "value": "for_housing",
+          "title": "Под жильё"
+        },
+        {
+          "value": "cottage",
+          "title": "Дачный"
+        },
+        {
+          "value": "commercial",
+          "title": "Коммерческий"
+        },
+        {
+          "value": "agricultural",
+          "title": "Сельскохозяйственный"
+        }
+      ]
+    },
+    {
+      "value": "commercial",
+      "title": "Коммерческая",
+      "fields": [
+        "number_of_floors",
+        "floors_house",
+        "number_rooms",
+        "type_building",
+        "total_area",
+        "living_area",
+        "kitchen_area",
+        "ceiling_height",
+        "condition",
+        "electricity",
+        "water_pipes",
+        "sewage",
+        "gas",
+        "security",
+        "entrance_door",
+        "furniture",
+        "window",
+        "heating",
+        "year_built"
+      ],
+      "subcategories": [
+        {
+          "value": "office",
+          "title": "Офис"
+        },
+        {
+          "value": "shop",
+          "title": "Магазин"
+        },
+        {
+          "value": "marketplace",
+          "title": "Торговая площадь"
+        },
+        {
+          "value": "storage",
+          "title": "Склад"
+        },
+        {
+          "value": "basement",
+          "title": "Подвальное помещение"
+        }
+      ]
+    }
+  ]
+}

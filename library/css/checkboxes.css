@@ -1,0 +1,105 @@
+/*
+<div><input type="checkbox" class="checkbox" id="cb1"><label for="cb1">Флажок 1</label></div>
+<div><input type="radio" class="radio" name="rb" id="rb1" checked><label for="rb1">Переключатель 1</label></div>
+*/
+
+
+.checkbox:checked,
+.checkbox:not(:checked),
+.radio:checked,
+.radio:not(:checked)
+{
+    position: absolute;
+    left: -9999px;
+}
+
+.checkbox:checked + label,
+.checkbox:not(:checked) + label,
+.radio:checked + label,
+.radio:not(:checked) + label {
+    /*display: inline-block;*/
+    display: inline;
+    position: relative;
+    padding-left: 28px;
+    line-height: 20px;
+    cursor: pointer;
+}
+
+.checkbox:checked + label:before,
+.checkbox:not(:checked) + label:before,
+.radio:checked + label:before,
+.radio:not(:checked) + label:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #dddddd;
+    background-color: #ffffff;
+}
+
+.checkbox:checked + label:before,
+.checkbox:not(:checked) + label:before {
+    border-radius: 2px;
+}
+
+.radio:checked + label:before,
+.radio:not(:checked) + label:before {
+    border-radius: 100%;
+}
+
+.checkbox:checked + label:after,
+.checkbox:not(:checked) + label:after,
+.radio:checked + label:after,
+.radio:not(:checked) + label:after {
+    content: "";
+    position: absolute;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+
+.checkbox:checked + label:after,
+.checkbox:not(:checked) + label:after {
+    left: 3px;
+    top: 4px;
+    width: 10px;
+    height: 5px;
+    border-radius: 1px;
+    border-left: 4px solid #28a745;
+    border-bottom: 4px solid #28a745;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+.radio:checked + label:after,
+.radio:not(:checked) + label:after {
+    left: 5px;
+    top: 5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    background-color: #28a745;
+}
+
+.checkbox:not(:checked) + label:after,
+.radio:not(:checked) + label:after {
+    opacity: 0;
+}
+
+.checkbox:checked + label:after,
+.radio:checked + label:after {
+    opacity: 1;
+}
+
+.checkbox + label:after,
+.checkbox + label:before,
+.radio + label:after,
+.radio + label:before {
+    box-sizing: content-box;
+}

@@ -1,0 +1,679 @@
+[
+  {
+    "value": "year_built",
+    "label": "Год постройки",
+    "type": "text"
+  },
+  {
+    "value": "floors_house",
+    "label": "Этажей",
+    "type": "text"
+  },
+  {
+    "value": "number_of_floors",
+    "label": "Этажность",
+    "type": "text"
+  },
+  {
+    "value": "number_rooms",
+    "label": "Количество комнат",
+    "type": "text"
+  },
+  {
+    "value": "type_building",
+    "label": "Тип строения",
+    "type": "select",
+    "options": [
+      {
+        "value": "monolithic",
+        "label": "Монолитный"
+      },
+      {
+        "value": "brick",
+        "label": "Кирпичный"
+      },
+      {
+        "value": "panel",
+        "label": "Панельный"
+      },
+      {
+        "value": "wooden",
+        "label": "Деревянный"
+      },
+      {
+        "value": "foam_block",
+        "label": "Пеноблочный"
+      },
+      {
+        "value": "slag_block",
+        "label": "Шлакоблочный"
+      },
+      {
+        "value": "gas_silicate",
+        "label": "Газосиликатный"
+      },
+      {
+        "value": "sandwich_panels",
+        "label": "Сендвич-панели"
+      },
+      {
+        "value": "other",
+        "label": "Иное"
+      }
+    ]
+  },
+  {
+    "value": "roof",
+    "label": "Кровля",
+    "type": "select",
+    "options": [
+      {
+        "value": "flexible_shingles",
+        "label": "Гибкая черепица"
+      },
+      {
+        "value": "metal_tile",
+        "label": "Металлочерепица"
+      },
+      {
+        "value": "decking",
+        "label": "Профнастил"
+      },
+      {
+        "value": "ondulin",
+        "label": "Ондулин"
+      },
+      {
+        "value": "slate",
+        "label": "Шифер"
+      },
+      {
+        "value": "faltsevaya",
+        "label": "Фальцевая"
+      },
+      {
+        "value": "roll_overlay",
+        "label": "Рулонная наплавляемая"
+      },
+      {
+        "value": "membranous",
+        "label": "Мембранная"
+      },
+      {
+        "value": "ceramic_tiles",
+        "label": "Керамическая черепица"
+      },
+      {
+        "value": "sand_cement_tiles",
+        "label": "Песчано-цементная черепица"
+      },
+      {
+        "value": "shale_coating",
+        "label": "Сланцевое покрытие"
+      }
+    ]
+  },
+  {
+    "value": "total_area",
+    "label": "Площадь общая",
+    "type": "text"
+  },
+  {
+    "value": "living_area",
+    "label": "Площадь жилая",
+    "type": "text"
+  },
+  {
+    "value": "kitchen_area",
+    "label": "Площадь кухни",
+    "type": "text"
+  },
+  {
+    "value": "ceiling_height",
+    "label": "Высота потолков",
+    "type": "text"
+  },
+  {
+    "value": "condition",
+    "label": "Состояние",
+    "type": "select",
+    "options": [
+      {
+        "value": "1",
+        "label": "Хорошее"
+      },
+      {
+        "value": "2",
+        "label": "Среднее"
+      },
+      {
+        "value": "3",
+        "label": "Евроремонт"
+      },
+      {
+        "value": "4",
+        "label": "Требует ремонта"
+      },
+      {
+        "value": "5",
+        "label": "Свободная планировка"
+      },
+      {
+        "value": "6",
+        "label": "Черновая отделка"
+      },
+      {
+        "value": "7",
+        "label": "Недостроено"
+      }
+    ]
+  },
+  {
+    "value": "heating",
+    "label": "Отопление",
+    "type": "select",
+    "options": [
+      {
+        "value": "1",
+        "label": "На твердом топливе"
+      },
+      {
+        "value": "2",
+        "label": "Центральное"
+      },
+      {
+        "value": "3",
+        "label": "На газе"
+      },
+      {
+        "value": "4",
+        "label": "Электрическое"
+      },
+      {
+        "value": "5",
+        "label": "На жидком топливе"
+      },
+      {
+        "value": "6",
+        "label": "Смешанное"
+      },
+      {
+        "value": "7",
+        "label": "Без отопления"
+      }
+    ]
+  },
+  {
+    "value": "electricity",
+    "label": "Электричество",
+    "type": "select",
+    "options": [
+      {
+        "value": "1",
+        "label": "Есть"
+      },
+      {
+        "value": "2",
+        "label": "Нет"
+      },
+      {
+        "value": "3",
+        "label": "Есть возможность подключить"
+      }
+    ]
+  },
+  {
+    "value": "water_pipes",
+    "label": "Водопровод",
+    "type": "select",
+    "options": [
+      {
+        "value": "1",
+        "label": "Центральное"
+      },
+      {
+        "value": "2",
+        "label": "Есть возможность подключения"
+      },
+      {
+        "value": "3",
+        "label": "Скважина"
+      },
+      {
+        "value": "4",
+        "label": "Нет"
+      }
+    ]
+  },
+  {
+    "value": "bathroom",
+    "label": "Санузел",
+    "type": "select",
+    "options": [
+      {
+        "value": "1",
+        "label": "Совмещенный"
+      },
+      {
+        "value": "2",
+        "label": "Раздельный"
+      },
+      {
+        "value": "3",
+        "label": "2 с/у и более"
+      },
+      {
+        "value": "4",
+        "label": "Во дворе"
+      }
+    ]
+  },
+  {
+    "value": "sewage",
+    "label": "Канализация",
+    "type": "select",
+    "options": [
+      {
+        "value": "1",
+        "label": "Центральная"
+      },
+      {
+        "value": "2",
+        "label": "Есть возможность подведения"
+      },
+      {
+        "value": "3",
+        "label": "Септик"
+      },
+      {
+        "value": "4",
+        "label": "Нет"
+      }
+    ]
+  },
+  {
+    "value": "internet",
+    "label": "Интернет",
+    "type": "select",
+    "options": [
+      {
+        "value": "1",
+        "label": "Есть"
+      },
+      {
+        "value": "2",
+        "label": "Есть возможность подключить"
+      },
+      {
+        "value": "3",
+        "label": "Нет"
+      }
+    ]
+  },
+  {
+    "value": "gas",
+    "label": "Газ",
+    "type": "select",
+    "options": [
+      {
+        "value": "1",
+        "label": "Магистральный"
+      },
+      {
+        "value": "2",
+        "label": "Автономный"
+      },
+      {
+        "value": "3",
+        "label": "Есть возможность подключить"
+      },
+      {
+        "value": "4",
+        "label": "Нет"
+      }
+    ]
+  },
+  {
+    "value": "security",
+    "label": "Безопасность",
+    "type": "select",
+    "options": [
+      {
+        "value": "1",
+        "label": "Сигнализация"
+      },
+      {
+        "value": "2",
+        "label": "Собака"
+      }
+    ]
+  },
+  {
+    "value": "land_area",
+    "label": "Площадь участка, соток",
+    "type": "text"
+  },
+  {
+    "value": "how_plot_fenced",
+    "label": "Ограждение участка",
+    "type": "select",
+    "options": [
+      {
+        "value": "1",
+        "label": "Деревянный забор"
+      },
+      {
+        "value": "2",
+        "label": "Кирпичный забор"
+      }
+    ]
+  },
+  {
+    "value": "entrance_door",
+    "label": "Входная дверь",
+    "type": "select",
+    "options": [
+      {
+        "value": "1",
+        "label": "Металлическая"
+      },
+      {
+        "value": "2",
+        "label": "Деревянная"
+      },
+      {
+        "value": "3",
+        "label": "Бронированная"
+      }
+    ]
+  },
+  {
+    "value": "furniture",
+    "label": "Мебель",
+    "type": "select",
+    "options": [
+      {
+        "value": "1",
+        "label": "Полностью меблирована"
+      },
+      {
+        "value": "2",
+        "label": "Частично меблирована"
+      },
+      {
+        "value": "3",
+        "label": "Пустая"
+      }
+    ]
+  },
+  {
+    "value": "window",
+    "label": "Окна",
+    "type": "select",
+    "options": [
+      {
+        "value": "1",
+        "label": "Металлопластиковые"
+      },
+      {
+        "value": "2",
+        "label": "Деревянные"
+      },
+      {
+        "value": "3",
+        "label": "Без окон"
+      }
+    ]
+  },
+  {
+    "value": "view_from_windows",
+    "label": "Вид из окна",
+    "type": "select",
+    "options": [
+      {
+        "value": "1",
+        "label": "Во двор и на улицу"
+      },
+      {
+        "value": "2",
+        "label": "Во двор"
+      },
+      {
+        "value": "3",
+        "label": "На улицу"
+      }
+    ]
+  },
+  {
+    "value": "garbage_chute",
+    "label": "Мусоропровод",
+    "type": "select",
+    "options": [
+      {
+        "value": "1",
+        "label": "Есть"
+      },
+      {
+        "value": "2",
+        "label": "Нет"
+      },
+      {
+        "value": "3",
+        "label": "Неважно"
+      }
+    ]
+  },
+  {
+    "value": "layout",
+    "label": "Планировка",
+    "type": "select",
+    "options": [
+      {
+        "value": "1",
+        "label": "Свободная"
+      },
+      {
+        "value": "2",
+        "label": "Хрущевка"
+      },
+      {
+        "value": "3",
+        "label": "Сталинка"
+      },
+      {
+        "value": "4",
+        "label": "Брежневка"
+      },
+      {
+        "value": "5",
+        "label": "Гостинка"
+      },
+      {
+        "value": "6",
+        "label": "Чешка"
+      },
+      {
+        "value": "7",
+        "label": "Старый фонд"
+      },
+      {
+        "value": "8",
+        "label": "Панельный дом"
+      },
+      {
+        "value": "9",
+        "label": "Кооператив"
+      },
+      {
+        "value": "10",
+        "label": "Улучшенка"
+      },
+      {
+        "value": "11",
+        "label": "Нестандартная"
+      }
+    ]
+  },
+  {
+    "value": "reason_for_sale",
+    "label": "Причина продажи",
+    "type": "select",
+    "options": [
+      {
+        "value": "1",
+        "label": "Альтернативная сделка"
+      },
+      {
+        "value": "2",
+        "label": "Переезд в другой город"
+      },
+      {
+        "value": "3",
+        "label": "Инвестиция в бизнес"
+      },
+      {
+        "value": "4",
+        "label": "Нужны деньги на лечение"
+      },
+      {
+        "value": "5",
+        "label": "Отпала надобность"
+      },
+      {
+        "value": "6",
+        "label": "Иное"
+      }
+    ]
+  },
+  {
+    "value": "corner",
+    "label": "Угловая",
+    "type": "select",
+    "options": [
+      {
+        "value": "yes",
+        "label": "Да"
+      },
+      {
+        "value": "no",
+        "label": "Нет"
+      }
+    ]
+  },
+  {
+    "value": "balcony",
+    "label": "Балкон",
+    "type": "select",
+    "options": [
+      {
+        "value": "balcony",
+        "label": "Балкон"
+      },
+      {
+        "value": "loggia",
+        "label": "Лоджия"
+      },
+      {
+        "value": "balcony_loggia",
+        "label": "Балкон и лоджия"
+      },
+      {
+        "value": "two_balconies",
+        "label": "2 балкона"
+      },
+      {
+        "value": "two_loggias",
+        "label": "2 лоджии"
+      }
+    ]
+  },
+  {
+    "value": "basement",
+    "label": "Подвал",
+    "type": "select",
+    "options": [
+      {
+        "value": "yes",
+        "label": "Есть"
+      },
+      {
+        "value": "no",
+        "label": "Нет"
+      }
+    ]
+  },
+  {
+    "value": "ceiling",
+    "label": "Перекрытие",
+    "type": "select",
+    "options": [
+      {
+        "value": "slabs",
+        "label": "Плиты"
+      },
+      {
+        "value": "wood",
+        "label": "Дерево"
+      },
+      {
+        "value": "metal",
+        "label": "Металл"
+      }
+    ]
+  },
+  {
+    "value": "limes",
+    "label": "Рампа",
+    "type": "select",
+    "options": [
+      {
+        "value": "yes",
+        "label": "Есть"
+      },
+      {
+        "value": "no",
+        "label": "Нет"
+      }
+    ]
+  },
+  {
+    "value": "limes",
+    "label": "Рампа",
+    "type": "select",
+    "options": [
+      {
+        "value": "yes",
+        "label": "Есть"
+      },
+      {
+        "value": "no",
+        "label": "Нет"
+      }
+    ]
+  },
+  {
+    "value": "garage_width",
+    "label": "Ширина гаража",
+    "type": "text"
+  },
+  {
+    "value": "garage_length",
+    "label": "Длина гаража",
+    "type": "text"
+  },
+  {
+    "value": "garage_height",
+    "label": "Высота гаража",
+    "type": "text"
+  },
+  {
+    "value": "gate_width",
+    "label": "Ширина ворот",
+    "type": "text"
+  },
+  {
+    "value": "gate_height",
+    "label": "Высота ворот",
+    "type": "text"
+  }
+]

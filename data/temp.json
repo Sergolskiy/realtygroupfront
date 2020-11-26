@@ -1,0 +1,61 @@
+[
+  {
+    "cards": [
+      "see",
+      "edit",
+      "delete",
+      "add"
+    ]
+  },
+  {
+    "agencies": [
+      "see"
+    ]
+  },
+  {
+    "card_categories": [
+      "see"
+    ]
+  },
+  {
+    "card_subcategories": [
+      "see"
+    ]
+  },
+  {
+    "currencies": [
+      "see"
+    ]
+  },
+  {
+    "offices": [
+      "see"
+    ]
+  },
+  {
+    "offices_partitions": [
+      "see"
+    ]
+  },
+  {
+    "roles": [
+      "see"
+    ]
+  },
+  {
+    "social_networks": [
+      "see",
+      "edit",
+      "delete",
+      "add"
+    ]
+  },
+  {
+    "tasks": [
+      "see",
+      "edit",
+      "delete",
+      "add"
+    ]
+  }
+]

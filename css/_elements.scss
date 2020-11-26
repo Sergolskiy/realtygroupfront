@@ -1,0 +1,240 @@
+//@import "extend";
+
+.count {
+  position: absolute;
+  left: 50%;
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 100%;
+  background: #FF0017;
+  color: #ffffff;
+  font-size: 10px;
+  top: -4px;
+  font-weight: 600;
+  border: none;
+  text-align: center;
+}
+
+.count_sup {
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+.icon-wrapper {
+  @extend %flex-center;
+  width: 20px;
+  height: 20px;
+  color: #A8A8A8;
+  border-radius: 100%;
+  border: 1px solid #f2f2f2;
+}
+
+.circle-icon {
+  @extend %flex-center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.circle-hover {
+  @extend .circle-icon;
+  transition: background-color 0.4s;
+  &:hover {
+    background-color: #f3f3f3;
+  }
+}
+
+
+// Loader при регистрации
+.lds-dual-ring {
+  display: inline-block;
+  &:after {
+    content: " ";
+    display: block;
+    width: 36px;
+    height: 36px;
+    //margin: 1px;
+    border-radius: 50%;
+    border: 5px solid;
+    border-color: #fff transparent #fff transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+  }
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+// Input с нижним подчеркиванием в активном состоянии
+.inputGroup {
+  input {
+    border: none;
+    border-bottom: 1px solid #E2E2E2;
+    padding: 0 calc(3px + 5%);
+    height: 36px;
+    width: 100%;
+    +span {
+      position: relative;
+      display: block;
+      width: 100%;
+      &:before, &:after {
+        content: "";
+        height: 2px;
+        width: 0;
+        bottom: 0;
+        position: absolute;
+        background: #6197b7;
+        transition: 0.2s ease all;
+      }
+      &:before {
+        left: 50%;
+      }
+      &:after {
+        right: 50%;
+      }
+    }
+    &:focus + span {
+      &:before, &:after {
+        width: 50%;
+      }
+    }
+  }
+}
+
+.input {
+  border: 1px solid #dee2e6;
+  border-radius: .25rem;
+  padding: .25rem;
+}
+
+// Кнопка dropdown
+.btn-dropdown {
+  @extend %flex-between;
+  border: 1px solid #E2E2E2;
+  border-radius: 3px;
+  padding: 0 8px;
+  cursor: pointer;
+  >i {
+    //margin-right: 5px;
+  }
+  >span:first-of-type {
+    margin: 0 5px;
+    white-space: nowrap;
+    overflow-x: hidden;
+  }
+  .icon-wrapper {
+    //margin-left: 5px;
+  }
+  &:hover {
+    background-color: #f3f3f3;
+  }
+}
+
+.btn-dropdown-center {
+  @extend .btn-dropdown;
+  >span:first-of-type {
+    margin: 0 auto;
+  }
+}
+
+.btn-dropdown-icon {
+  @extend .circle-hover;
+  >span:first-of-type {
+    display: none;
+  }
+}
+
+.btn-obj {
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
+  border: 1px solid #d9d9d952;
+  border-radius: 3px;
+  padding: 2px 7px;
+  height: 33px;
+  align-items: center;
+  cursor: pointer;
+  &:hover {
+    text-decoration: none;
+    background-color: #f3f3f3;
+  }
+  span {
+    color: #404040;
+    margin: 0 12px;
+  }
+}
+
+//.btn-curriency {
+//  border: 0;
+//  background-color: #fff;
+//  transition: background-color 0.4s;
+//  &:hover {
+//    background-color: #f3f3f3;
+//  }
+//}
+
+
+
+
+// Кнопка выбора типа заявки в форме добавления
+.btn-choose {
+  @extend %flex-center;
+  border-radius: 3px;
+  padding: 0 15px;
+  height: 36px;
+  width: 100%;
+  background-color: #f3f3f3;
+  cursor: pointer;
+  &:hover {
+    background-color: #D3D3D3;
+  }
+  &.active {
+    background-color: #28a745;
+    color: white;
+  }
+}
+
+// Фотографии в карточке объекта
+.card-gallery {
+  position: relative;
+  width: 120px;
+  min-width: 120px;
+  height: 80px;
+  border: 1px solid #dee2e6;
+  margin: 4px;
+  cursor: pointer;
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+  i {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: white;
+  }
+  &:hover {
+    i {
+      display: inline-block;
+    }
+  }
+}
+
+// Аватарка
+.avatar {
+  border: 1px solid #dee2e6;
+  border-radius: 50%;
+  overflow: hidden;
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+}
