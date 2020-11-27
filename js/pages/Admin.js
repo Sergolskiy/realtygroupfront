@@ -12,13 +12,18 @@ export class Admin extends React.Component {
   }
 
   render() {
-    const {user_profile} = this.props;
+    let {user_profile} = this.props;
+    // console.log(user_profile);
+    get_user_profile(true, 1, false).done(function (resp_user_profile) {
+      user_profile = resp_user_profile;
 
-    if(user_profile.user_role.id !== 1){
-      // history.push("/");
-      // this.context.history.push('/')
-      location.href = '/cards'
-    }
+      if(user_profile.user_role.id !== 1){
+        // history.push("/");
+        // this.context.history.push('/')
+        location.href = '/cards'
+      }
+    })
+
 
     return (
       <>

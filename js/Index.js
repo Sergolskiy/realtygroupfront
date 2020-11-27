@@ -9,6 +9,7 @@ import {ToastContainer} from 'react-toastify';
 import {Auth} from './components/authorization/Auth'
 import {Main} from './pages/Main'
 import {Card} from './pages/Card'
+import {CardsArchive} from './pages/CardsArchive'
 import {Analytics} from './pages/Analytics'
 import {Contacts} from './pages/Contacts'
 import {Documents} from './pages/Documents'
@@ -52,7 +53,6 @@ class Index extends React.Component {
 
       get_user_access_control().done((response) => {
         window.localStorage.setItem('access', JSON.stringify(response))
-
       })
 
     }
@@ -97,6 +97,13 @@ class Index extends React.Component {
                  render={
                    props => authorized ?
                      <Cards {...props} user_profile={user_profile}/> :
+                     <Auth {...props}/>
+                 }
+          />
+          <Route exact path="/cards-archive"
+                 render={
+                   props => authorized ?
+                     <CardsArchive {...props} user_profile={user_profile}/> :
                      <Auth {...props}/>
                  }
           />

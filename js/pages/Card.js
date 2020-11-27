@@ -33,6 +33,7 @@ export class Card extends React.Component {
         error: false,
         isEdit: this.props.location.state || false, // берем из ModalAddDeal или External_sources_add
         // presentationMode: stor.local.get('presentationMode')
+        access: true,
     };
 
     loadData = () => {
@@ -54,13 +55,20 @@ export class Card extends React.Component {
                     cardInfo,
                     cardInfoInitial: Object.assign({}, cardInfo)
                 })
+            }).fail((err) => {
+                console.log(err);
+                // access
             })
 
         ).done(function () {
             Object.assign(newState, {loading: false});
             changeStateCard(newState)
-        }).fail(function () {
-            changeStateCard({error: true, loading: false})
+        }).fail(function (err) {
+            let access = true;
+            if(err.status === 403){
+                access = false;
+            }
+            changeStateCard({error: true, loading: false, access: access})
         });
 
         get_nbu_quotes_only().done(nbu_quotes => changeStateCard({nbu_quotes}));
@@ -323,12 +331,13 @@ export class Card extends React.Component {
         console.log('render Card');
 
         const {user_profile} = this.props;
-        const {cardInfo, cities, cityArr, office, users, loading, error, isEdit, nbu_quotes, /*isTabMainShow,*/ showTab} = this.state;
+        const {cardInfo, cities, cityArr, office, users, loading, error, access, isEdit, nbu_quotes, /*isTabMainShow,*/ showTab} = this.state;
         const {edit, save, del, cancel, changeStateCard, copyUrl} = this;
         const cardId = this.props.match.params.id;
         const all_categories = data.categories;
 
         if (loading) return <div className="google-loader"><span/><span/><span/><span/></div>;
+        if(error && !access) return <div>Такой страницы нет</div>;
         if (error) return <div>Ошибка. Обновите страницу</div>;
         if ($.isEmptyObject(cardInfo)) return <div>Такой страницы нет</div>;
 

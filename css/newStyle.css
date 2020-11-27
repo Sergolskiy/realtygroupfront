@@ -151,3 +151,36 @@
 .settings-ip__ip{
   width: 110px;
 }
+
+.ipToggle{
+  margin: 20px 0;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.rentSale.ipToggle span {
+  font-weight: bold;
+  font-size: 14px;
+  width: 44px;
+  text-align: center;
+}
+
+.rentSale.ipToggle label{
+  margin: 0;
+}
+
+.settings-table-permissions{
+  margin-top: 20px;
+  padding-left: 15px;
+}
+
+.settings-table-permissions p{
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.settings-table-permissions table td,
+.settings-table-permissions table th{
+  border: 1px solid black;
+  padding: 5px;
+}

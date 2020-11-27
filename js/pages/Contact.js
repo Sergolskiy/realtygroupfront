@@ -201,7 +201,8 @@ export class Contact extends React.PureComponent {
 
                     {
                         // isTabMainShow && rightEditDel && (
-                          isTabMainShow && !permissions.hasOwnProperty('editDelContacts') && permissions.editDelContacts.hasOwnProperty('edit') && (
+                          isTabMainShow && permissions.hasOwnProperty('editDelContacts') && permissions.editDelContacts.hasOwnProperty('edit') &&
+                          (
                             isEdit ?
                             <div className="d-flex align-items-center ml-auto">
                                 <ButtonSave handler={save}/>

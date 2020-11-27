@@ -220,7 +220,7 @@ export class Settings_profile extends React.Component {
     const {editRole} = this.props;
     const {isAdmin} = this.props;
     const {editPermissions} = this.props;
-    console.log(user_profile);
+    // console.log(user_profile);
     const {agency, office, offices_partition, role, social_networks} = this.state;
     const {onChangePhone, onChangeSocial, onBlurSocial, changePhoto, changeFile, changePassword, oneMorePhone, oneMoreSocial, saveChanges, delPhone, delSocial} = this;
 
@@ -253,269 +253,307 @@ export class Settings_profile extends React.Component {
       )
     });
 
+    let mainRole = JSON.parse(window.localStorage.getItem('access')).role;
+
     return (
-      <div className="d-flex flex-wrap">
-        <div className="p-2">
+      <React.Fragment>
+        <div className="d-flex flex-wrap">
+          <div className="p-2">
 
-          <div className="avatar img-lg ml-auto mr-auto mb-3 mt-3">
-            <img src={image_url}/>
-          </div>
-          <button className="btn btn-outline-primary btn-block mb-1" onClick={changePhoto}>Изменить фото</button>
-          <input type="file" accept="image/*" className="d-none" onChange={changeFile}/>
-
-
-          <div>
-            <button className="btn btn-outline-primary btn-block mb-1" type="button" data-toggle="collapse"
-                    data-target="#changepassword" aria-expanded="false" aria-controls="collapseExample">
-              Изменить пароль
-            </button>
-            <div className="collapse" id="changepassword">
-              <div className="inputGroup mb-2">
-                <input type="password" placeholder="Новый пароль" id="password"/>
-                <span/>
-              </div>
-              <div className="inputGroup mb-2">
-                <input type="password" placeholder="Еще раз" id="passwordConfirm"/>
-                <span/>
-              </div>
-              <button className="btn btn-outline-success" onClick={changePassword}>Изменить</button>
+            <div className="avatar img-lg ml-auto mr-auto mb-3 mt-3">
+              <img src={image_url}/>
             </div>
-          </div>
-
-          <table className="table table-borderless table-sm">
-            <tbody>
-            <tr>
-              <th scope="row">Агентство</th>
-              <td>{agency && agency.title}</td>
-            </tr>
-            <tr>
-              <th scope="row">Офис</th>
-              <td>{office && office.title}</td>
-            </tr>
-            <tr>
-              <th scope="row">Отдел</th>
-              <td>{offices_partition && offices_partition.title}</td>
-            </tr>
-            <tr>
-              <th scope="row">Роль</th>
-              <td>{role && role.title}</td>
-            </tr>
-            </tbody>
-          </table>
+            <button className="btn btn-outline-primary btn-block mb-1" onClick={changePhoto}>Изменить фото</button>
+            <input type="file" accept="image/*" className="d-none" onChange={changeFile}/>
 
 
-        </div>
+            <div>
+              {mainRole === 'ROLE_ADMIN' &&
+              <button className="btn btn-outline-primary btn-block mb-1" type="button" data-toggle="collapse"
+                      data-target="#changepassword" aria-expanded="false" aria-controls="collapseExample">
+                Изменить пароль
+              </button>
+              }
 
-
-        <div className="p-2">
-          <div className="flex-between m-1">
-            <span>Фамилия</span>
-            <div className="inputGroup w210">
-              <input type="text" value={user_profile.surname}
-                     onChange={e => {
-                       const {user_profile} = this.props;
-                       user_profile.surname = e.currentTarget.value;
-                       window.Index.setState({user_profile});
-                     }}
-              />
-              <span/>
-            </div>
-          </div>
-          <div className="flex-between m-1">
-            <span>Имя</span>
-            <div className="inputGroup w210">
-              <input type="text" value={user_profile.name}
-                     onChange={e => {
-                       const {user_profile} = this.props;
-                       user_profile.name = e.currentTarget.value;
-                       window.Index.setState({user_profile});
-                     }}
-              />
-              <span/>
-            </div>
-          </div>
-          <div className="flex-between m-1">
-            <span>Отчество</span>
-            <div className="inputGroup w210">
-              <input type="text" value={user_profile.middle_name}
-                     onChange={e => {
-                       const {user_profile} = this.props;
-                       user_profile.middle_name = e.currentTarget.value;
-                       window.Index.setState({user_profile});
-                     }}
-              />
-              <span/>
-            </div>
-          </div>
-          <div className="flex-between m-1">
-            <span>E-mail</span>
-            <div className="inputGroup w210">
-              <input type="text" value={user_profile.email}
-                     onChange={e => {
-                       const {user_profile} = this.props;
-                       user_profile.email = e.currentTarget.value;
-                       window.Index.setState({user_profile});
-                     }}
-              />
-              <span/>
-            </div>
-          </div>
-
-          {
-            user_phones.map(function (item, i) {
-              return (
-                <div key={i} className="flex-between m-1">
-                  <span>{i === 0 && 'Телефон'}</span>
-                  <div className="w210">
-
-                    <div className="inputGroup">
-                      <Input_phone_profile
-                        phoneId={i}
-                        value={item.value}
-                        oncomplete={onChangePhone}
-                        onincomplete={delPhone}
-                      />
-                      <span/>
-                    </div>
-
-                  </div>
+              <div className="collapse" id="changepassword">
+                <div className="inputGroup mb-2">
+                  <input type="password" placeholder="Новый пароль" id="password"/>
+                  <span/>
                 </div>
-              )
-            })
-          }
-
-          <div className="flex-between m-1">
-            <span/>
-            <div className="flex-center w210 h36">
-              <i className="ml-auto cursor-pointer" onClick={oneMorePhone}>Добавить номер</i>
+                <div className="inputGroup mb-2">
+                  <input type="password" placeholder="Еще раз" id="passwordConfirm"/>
+                  <span/>
+                </div>
+                <button className="btn btn-outline-success" onClick={changePassword}>Изменить</button>
+              </div>
             </div>
+
+            <table className="table table-borderless table-sm">
+              <tbody>
+              <tr>
+                <th scope="row">Агентство</th>
+                <td>{agency && agency.title}</td>
+              </tr>
+              <tr>
+                <th scope="row">Офис</th>
+                <td>{office && office.title}</td>
+              </tr>
+              <tr>
+                <th scope="row">Отдел</th>
+                <td>{offices_partition && offices_partition.title}</td>
+              </tr>
+              <tr>
+                <th scope="row">Роль</th>
+                <td>{role && role.title}</td>
+              </tr>
+              </tbody>
+            </table>
+
+
           </div>
 
 
-          {
-            user_socials.map(function (user_social, i) {
-              const social_network = social_networks.find(item => item.id === user_social.social_network_id) || {};
-              return (
-                <div key={i} className="flex-between m-1">
-                  <div className="flex-fill text-right pr-3">
+          <div className="p-2">
+            <div className="flex-between m-1">
+              <span>Фамилия</span>
+              <div className="inputGroup w210">
+                <input type="text" value={user_profile.surname}
+                       onChange={e => {
+                         const {user_profile} = this.props;
+                         user_profile.surname = e.currentTarget.value;
+                         window.Index.setState({user_profile});
+                       }}
+                />
+                <span/>
+              </div>
+            </div>
+            <div className="flex-between m-1">
+              <span>Имя</span>
+              <div className="inputGroup w210">
+                <input type="text" value={user_profile.name}
+                       onChange={e => {
+                         const {user_profile} = this.props;
+                         user_profile.name = e.currentTarget.value;
+                         window.Index.setState({user_profile});
+                       }}
+                />
+                <span/>
+              </div>
+            </div>
+            <div className="flex-between m-1">
+              <span>Отчество</span>
+              <div className="inputGroup w210">
+                <input type="text" value={user_profile.middle_name}
+                       onChange={e => {
+                         const {user_profile} = this.props;
+                         user_profile.middle_name = e.currentTarget.value;
+                         window.Index.setState({user_profile});
+                       }}
+                />
+                <span/>
+              </div>
+            </div>
+            <div className="flex-between m-1">
+              <span>E-mail</span>
+              <div className="inputGroup w210">
+                <input type="text" value={user_profile.email}
+                       onChange={e => {
+                         const {user_profile} = this.props;
+                         user_profile.email = e.currentTarget.value;
+                         window.Index.setState({user_profile});
+                       }}
+                />
+                <span/>
+              </div>
+            </div>
+
+            {
+              user_phones.map(function (item, i) {
+                return (
+                  <div key={i} className="flex-between m-1">
+                    <span>{i === 0 && 'Телефон'}</span>
+                    <div className="w210">
+
+                      <div className="inputGroup">
+                        <Input_phone_profile
+                          phoneId={i}
+                          value={item.value}
+                          oncomplete={onChangePhone}
+                          onincomplete={delPhone}
+                        />
+                        <span/>
+                      </div>
+
+                    </div>
+                  </div>
+                )
+              })
+            }
+
+            <div className="flex-between m-1">
+              <span/>
+              <div className="flex-center w210 h36">
+                <i className="ml-auto cursor-pointer" onClick={oneMorePhone}>Добавить номер</i>
+              </div>
+            </div>
+
+
+            {
+              user_socials.map(function (user_social, i) {
+                const social_network = social_networks.find(item => item.id === user_social.social_network_id) || {};
+                return (
+                  <div key={i} className="flex-between m-1">
+                    <div className="flex-fill text-right pr-3">
                                         <span title={social_network.title} data-toggle="tooltip">
                                             {iconSocial[social_network.id]}
                                         </span>
-                  </div>
-                  <div className="w210">
-
-                    <div className="inputGroup">
-                      <input type="text"
-                             value={user_social.value || ''}
-                             onChange={e => onChangeSocial(i, e.target.value)}
-                             onBlur={e => onBlurSocial(i, e.target.value)}
-                      />
-                      <span/>
                     </div>
+                    <div className="w210">
 
+                      <div className="inputGroup">
+                        <input type="text"
+                               value={user_social.value || ''}
+                               onChange={e => onChangeSocial(i, e.target.value)}
+                               onBlur={e => onBlurSocial(i, e.target.value)}
+                        />
+                        <span/>
+                      </div>
+
+                    </div>
                   </div>
-                </div>
-              )
-            })
-          }
+                )
+              })
+            }
 
-          {
-            actualSocial.length > 0 &&
+            {
+              actualSocial.length > 0 &&
+              <div className="flex-between m-1">
+                <span>Добавить соц. сеть</span>
+                <div className="flex-center w210 h36">
+                  {actualSocial}
+                </div>
+              </div>
+            }
+
             <div className="flex-between m-1">
-              <span>Добавить соц. сеть</span>
-              <div className="flex-center w210 h36">
-                {actualSocial}
+              <span>Дата рождения</span>
+              <div className="inputGroup w210">
+                <Calendar value={birthday}
+                          onChange={e => {
+                            const {user} = this.state;
+                            user.user_details.birthday = e.currentTarget.value;
+                            this.setState({user});
+                          }}
+                />
+                <span/>
               </div>
             </div>
-          }
 
-          <div className="flex-between m-1">
-            <span>Дата рождения</span>
-            <div className="inputGroup w210">
-              <Calendar value={birthday}
-                        onChange={e => {
-                          const {user} = this.state;
-                          user.user_details.birthday = e.currentTarget.value;
-                          this.setState({user});
-                        }}
-              />
-              <span/>
+            {/*<div className="flex-between m-1">*/}
+            {/*    <span>Валюта</span>*/}
+            {/*    <div className="w210 h36">*/}
+            {/*        <SingleSelect selected_id={currency_id}*/}
+            {/*                      options={data.currencies}*/}
+            {/*                      iconWrapper={true}*/}
+            {/*                      internalClass="btn-dropdown ripple"*/}
+            {/*                      handler={id => {*/}
+            {/*                          const {user} = this.state;*/}
+            {/*                          user.user_details.currency = id;*/}
+            {/*                          this.setState({user});*/}
+            {/*                      }}*/}
+            {/*        />*/}
+            {/*    </div>*/}
+            {/*</div>*/}
+
+
+            <div className="mt-3">
+              {isAdmin &&
+              <button className="btn btn-outline-success" onClick={saveChanges}>Сохранить изменения</button>
+              }
+
             </div>
+
           </div>
 
-          {/*<div className="flex-between m-1">*/}
-          {/*    <span>Валюта</span>*/}
-          {/*    <div className="w210 h36">*/}
-          {/*        <SingleSelect selected_id={currency_id}*/}
-          {/*                      options={data.currencies}*/}
-          {/*                      iconWrapper={true}*/}
-          {/*                      internalClass="btn-dropdown ripple"*/}
-          {/*                      handler={id => {*/}
-          {/*                          const {user} = this.state;*/}
-          {/*                          user.user_details.currency = id;*/}
-          {/*                          this.setState({user});*/}
-          {/*                      }}*/}
-          {/*        />*/}
-          {/*    </div>*/}
-          {/*</div>*/}
+          {isAdmin !== undefined ?
+            <div className="p-2" style={{'width': '500px'}}>
+              <div className="flex-between m-1">
+                <div className="inputGroup ">
+                  <Select
+                    styles={{
+                      ...selectStyleDefault
+                    }}
+                    isMulti={false}
+                    isClearable={false}
+                    isSearchable={false}
+                    className="w-100 login-select"
+                    placeholder={'Роль'}
+                    defaultValue={editRole !== false ? editRole : null}
+                    options={this.state.roles}
+                    isDisabled={editRole !== false && editRole.id === 1 ? true : false}
+                    onChange={el => {
+                      this.setState({rolesId: el})
+                    }
+                    }
+                  />
+                  <span/>
+                </div>
+              </div>
+              <div className="flex-between m-1">
+                <div className="inputGroup ">
+                  <Select
+                    isMulti={true}
+                    isClearable={false}
+                    isSearchable={false}
+                    className="w-100 mb-15"
+                    placeholder={'Права'}
+                    options={this.state.permissions}
+                    isDisabled={editRole !== false && editRole.id === 1 ? true : false}
+                    defaultValue={editPermissions}
+                    onChange={el => {
+                      console.log(el);
+                      this.setState({permissionsIds: el})
+                    }
+                    }
+                  />
+                  <span/>
+                </div>
+              </div>
+            </div>
+            : null}
 
 
-          <div className="mt-3">
-            <button className="btn btn-outline-success" onClick={saveChanges}>Сохранить изменения</button>
-          </div>
 
         </div>
 
-        {isAdmin !== undefined ?
-          <div className="p-2" style={{'width': '500px'}}>
-            <div className="flex-between m-1">
-              <div className="inputGroup ">
-                <Select
-                  styles={{
-                    ...selectStyleDefault
-                  }}
-                  isMulti={false}
-                  isClearable={false}
-                  isSearchable={false}
-                  className="w-100 login-select"
-                  placeholder={'Роль'}
-                  defaultValue={editRole !== false ? editRole : null}
-                  options={this.state.roles}
-                  isDisabled={editRole !== false && editRole.id === 1 ? true : false}
-                  onChange={el => {
-                    this.setState({rolesId: el})
-                  }
-                  }
-                />
-                <span/>
-              </div>
-            </div>
-            <div className="flex-between m-1">
-              <div className="inputGroup ">
-                <Select
-                  isMulti={true}
-                  isClearable={false}
-                  isSearchable={false}
-                  className="w-100 mb-15"
-                  placeholder={'Права'}
-                  options={this.state.permissions}
-                  isDisabled={editRole !== false && editRole.id === 1 ? true : false}
-                  defaultValue={editPermissions}
-                  onChange={el => {
-                    console.log(el);
-                    this.setState({permissionsIds: el})
-                  }
-                  }
-                />
-                <span/>
-              </div>
-            </div>
+        {isAdmin !== undefined && this.state.permissions.length > 0 &&
+          <div className="settings-table-permissions">
+            <p>Справочник прав пользователей</p>
+
+            <table>
+              <tr>
+                <th>
+                  Название
+                </th>
+                <th>
+                  Описание
+                </th>
+              </tr>
+              {this.state.permissions.map((item, index) => {
+                return (
+                  <tr key={index}>
+                    <td>{item.label}</td>
+                    <td>{item.descriptions}</td>
+                  </tr>
+                  )
+              })}
+
+            </table>
           </div>
-        : null}
+        }
 
+      </React.Fragment>
 
-
-      </div>
     )
   }
 }

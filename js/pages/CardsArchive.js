@@ -2,12 +2,12 @@ import React from 'react'
 import {connect} from "react-redux"
 import {Add} from "../elements/Elements"
 import {MenuRight} from '../components/MenuRight'
-import {Cards_table} from './Cards_table'
+import {CardsArchiveTable} from './CardsArchiveTable'
 import {ModalAdd} from '../components/modal/ModalAdd'
 import {ObjectsRequests} from "../elements/ObjectsRequests";
 import ReactToPrint from "react-to-print";
 
-class Cards extends React.PureComponent {
+class CardsArchive extends React.PureComponent {
 
     componentDidMount() {
         legitRipple();
@@ -138,7 +138,7 @@ class Cards extends React.PureComponent {
                     <div className="wh-100 overflow-auto">
                         { permissions.hasOwnProperty('cards') && permissions.cards.hasOwnProperty('seeRent') ||
                         permissions.hasOwnProperty('cards') && permissions.cards.hasOwnProperty('seeSale') ?
-                        <Cards_table
+                        <CardsArchiveTable
                             dealtype={dealtype}
                             dealdirection={dealdirection}
                             category={category}
@@ -164,6 +164,6 @@ class Cards extends React.PureComponent {
     }
 }
 
-Cards = connect(store => store.reducerCards)(Cards);
-export {Cards}
+CardsArchive = connect(store => store.reducerCards)(CardsArchive);
+export {CardsArchive}
 

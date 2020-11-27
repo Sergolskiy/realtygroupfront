@@ -104,7 +104,7 @@ export class Card_main_comments extends React.PureComponent {
 
     remove_comment(data).done((response) => {
       console.log(response);
-      document.querySelector('div[data-comment-id="'+index+'"]').remove()
+      document.querySelector('div[data-comment-id="'+index+'"]').parentNode.parentNode.remove()
     }).fail(() => {
       alert('Ошибка при удалении')
     })

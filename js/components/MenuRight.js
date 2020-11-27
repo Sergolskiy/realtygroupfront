@@ -85,6 +85,11 @@ export class MenuRight extends React.PureComponent {
                             <span>Обучение</span>
                         </Link>
 
+                        <Link to="/cards-archive" className="_other">
+                            <i className="mdi mdi-sitemap"/>
+                            <span>Архив</span>
+                        </Link>
+
                         <Link to="/external_sources" className="_other">
                             <i className="mdi mdi-sitemap"/>
                             <span>Внешние источники</span>
