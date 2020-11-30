@@ -14,7 +14,9 @@ export class MenuRight extends React.PureComponent {
 
         const {user_profile, dealtype} = this.props;
 
-        const showSections = location.hostname !== 'crm.realtygroup.biz';
+        // const showSections = location.hostname !== 'crm.realtygroup.biz';
+        const showSections = location.hostname !== 'asabix.net.ua';
+
 
         let permissions = JSON.parse(window.localStorage.getItem('access')).permissions;
         let role = JSON.parse(window.localStorage.getItem('access')).role;
