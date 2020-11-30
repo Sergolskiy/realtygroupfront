@@ -11,7 +11,7 @@ export class ModalAddDeal_typedeal extends React.Component {
     return (
       <div className="modal-dealtype-btns">
 
-        {role === 'ROLE_ADMIN' || role === 'ROLE_REALTOR_RENT' || role === 'ROLE_REALTOR_SALE_RENT' &&
+        {role === 'ROLE_ADMIN' || role === 'ROLE_REALTOR_RENT' || role === 'ROLE_REALTOR_SALE_RENT' || role === 'ROLE_TRAINEE_RENT' ?
         <div className="mb-2">
           <div
             className={"btn-choose _typedeal mr-2" + ((dealtype === 'rent' && dealdirection === 'request') ? ' active' : '')}
@@ -22,9 +22,10 @@ export class ModalAddDeal_typedeal extends React.Component {
             onClick={() => clickTypeDeal('rent', 'object')}>Сдам
           </div>
         </div>
+          : null
         }
 
-        {role === 'ROLE_ADMIN' || role === 'ROLE_REALTOR_SALE' || role === 'ROLE_REALTOR_SALE_RENT' &&
+        {role === 'ROLE_ADMIN' || role === 'ROLE_REALTOR_SALE' || role === 'ROLE_REALTOR_SALE_RENT' || role === 'ROLE_TRAINEE_SALE' ?
         <div>
           <div
             className={"btn-choose _typedeal mr-2" + ((dealtype === 'sale' && dealdirection === 'request') ? ' active' : '')}
@@ -35,6 +36,7 @@ export class ModalAddDeal_typedeal extends React.Component {
             onClick={() => clickTypeDeal('sale', 'object')}>Продам
           </div>
         </div>
+          : null
         }
       </div>
     )
