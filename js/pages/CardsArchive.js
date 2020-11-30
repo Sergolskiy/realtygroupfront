@@ -89,7 +89,7 @@ class CardsArchive extends React.PureComponent {
 
                 <div className="head navbar flex-nowrap">
 
-                    <Add/>
+                    {/*<Add/>*/}
 
                     {/* Currency_old_20190501 */}
                     {/*<div className="d-none d-md-block w75 h33">*/}

@@ -96,25 +96,33 @@ export class Cards_table extends React.PureComponent {
         const {changeState} = this;
         const newState = {};
 
+        let role = JSON.parse(window.localStorage.getItem('access')).role;
+
+        let data = {
+            page: 1,
+            size,
+            // sort: sort_field + ',' + sort_by,
+            sort: sort,
+            type: dealtype,
+            sale_type: dealdirection,
+            category,
+            subcategory: f_subcategory,
+            city: f_city,
+            area: f_area,
+            street: f_street,
+            stage_transaction: f_stage,
+            user_id: f_realtor,
+            contacts_id,
+            price_from: f_price_from,
+            price_to: f_price_to
+        }
+
+        if(role === 'ROLE_ADMIN') {
+            delete data.user_id;
+        }
+
         $.when(
-            get_cards_filtered({
-                page: 1,
-                size,
-                // sort: sort_field + ',' + sort_by,
-                sort: sort,
-                type: dealtype,
-                sale_type: dealdirection,
-                category,
-                subcategory: f_subcategory,
-                city: f_city,
-                area: f_area,
-                street: f_street,
-                stage_transaction: f_stage,
-                user_id: f_realtor,
-                contacts_id,
-                price_from: f_price_from,
-                price_to: f_price_to
-            }).done(function (cards_query) {
+            get_cards_filtered(data).done(function (cards_query) {
                 Object.assign(newState, {
                     cards_query,
                     cards: cards_query.data || []
@@ -132,7 +140,10 @@ export class Cards_table extends React.PureComponent {
         const {changeState} = this;
 
         this.setState({loading: true});
-        get_cards_filtered({
+
+        let role = JSON.parse(window.localStorage.getItem('access')).role;
+
+        let data = {
             page,
             size,
             // sort: sort_field + ',' + sort_by,
@@ -149,7 +160,13 @@ export class Cards_table extends React.PureComponent {
             user_id: f_realtor,
             price_from: f_price_from,
             price_to: f_price_to
-        }).done(function (cards_query) {
+        };
+
+        if(role === 'ROLE_ADMIN') {
+            delete data.user_id;
+        }
+
+        get_cards_filtered(data).done(function (cards_query) {
             changeState({
                 cards_query,
                 cards: cards_query.data || [],
@@ -165,7 +182,10 @@ export class Cards_table extends React.PureComponent {
 
 
         this.setState({loading: true});
-        get_cards_filtered({
+
+        let role = JSON.parse(window.localStorage.getItem('access')).role;
+
+        let data = {
             page: cards_query.current_page + 1,
             size,
             // sort: sort_field + ',' + sort_by,
@@ -182,7 +202,13 @@ export class Cards_table extends React.PureComponent {
             user_id: f_realtor,
             price_from: f_price_from,
             price_to: f_price_to
-        }).done(function (cards_query) {
+        };
+
+        if(role === 'ROLE_ADMIN') {
+            delete data.user_id;
+        }
+
+        get_cards_filtered(data).done(function (cards_query) {
             changeState({
                 cards_query,
                 cards: cards.concat(cards_query.data || []),

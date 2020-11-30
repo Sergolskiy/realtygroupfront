@@ -8,6 +8,7 @@ import {MenuList} from "../elements/MenuList";
 import {User_photo} from "../elements/User_photo";
 import {Th_stage} from "../elements/Th_stage";
 import {Cards_td_description_comment} from "./Cards_td_description_comment";
+import {ButtonEdit} from "../elements/ButtonEdit";
 
 
 // dealtype - rent, sale (опция)
@@ -432,7 +433,7 @@ export class CardsArchiveTable extends React.PureComponent {
         const optionsStreets = Object.keys(streets).map(key => ({value: key, label: streets[key]}));
         const defaultValueStreets = s_street ? {value: s_street, label: streets[s_street]} : null;
 
-
+        let permissions = JSON.parse(window.localStorage.getItem('access')).permissions;
 
 
         const tbody = cards
@@ -481,6 +482,8 @@ export class CardsArchiveTable extends React.PureComponent {
               const subcategory_title = get_subcategory_title(cardInfo);
 
               const link = "/cards/" + cardInfo.id;
+
+
 
               return (
                 <tr key={cardInfo.id} data-card-id={cardInfo.id} onDoubleClick={trDoubleClick} className="cursor-pointer">
@@ -583,10 +586,13 @@ export class CardsArchiveTable extends React.PureComponent {
                         </td>
                     }
 
+                    { permissions.hasOwnProperty('reestablishCard') && permissions.reestablishCard.hasOwnProperty('reestablish') &&
                     <td>
                         <i className="mdi mdi-backup-restore cursor-pointer" data-card-id={cardInfo.id} onClick={ e => this.unArchived(e)}
                            title="Восстановить карточку"></i>
                     </td>
+                    }
+
 
                 </tr>
               )
@@ -969,11 +975,13 @@ export class CardsArchiveTable extends React.PureComponent {
                                           }
                                       </div>
                                   </th>
+                                  {permissions.hasOwnProperty('reestablishCard') && permissions.reestablishCard.hasOwnProperty('reestablish') &&
                                   <th scope="col" className={f_realtor !== defaultRealtor ? 'filtered' : ''}>
                                       <div className="_th">
-                                        <i className="mdi mdi-delete"></i>
+                                          <i className="mdi mdi-delete"></i>
                                       </div>
                                   </th>
+                                  }
                               </>
                           }
 

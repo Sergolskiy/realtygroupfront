@@ -122,6 +122,7 @@ export class Card_main_comments extends React.PureComponent {
     const {card_id} = this.props;
 
     let permissions = JSON.parse(window.localStorage.getItem('access')).permissions;
+    let role = JSON.parse(window.localStorage.getItem('access')).role;
 
     return <>
 
@@ -148,7 +149,7 @@ export class Card_main_comments extends React.PureComponent {
                     <div className="_head">{time}</div>
                     <div className="_message" data-comment-id={index}>{comment.post}</div>
                   </div>
-                  {permissions.hasOwnProperty('cards') && permissions.cards.hasOwnProperty('add') &&
+                  {role.hasOwnProperty('ROLE_ADMIN') &&
                   <div className="comments-chat-message-edit">
                     <i className="mdi mdi-pencil btn-style" title="Редактировать комментарий"
                        onClick={() => {
@@ -179,7 +180,7 @@ export class Card_main_comments extends React.PureComponent {
         <i className="mdi mdi-telegram fs32 cursor-pointer" onClick={this.sendMessage}/>
       </div>
 
-      { permissions.hasOwnProperty('cards') && permissions.cards.hasOwnProperty('add') &&
+      {role.hasOwnProperty('ROLE_ADMIN') &&
         <div className={"popup-edit-comment custom-popup" + (this.state.isOpenEdit ? ' open' : '')} onClick={(e) => {
           e.target.classList[0] === 'popup-edit-comment' ? this.closeEditPopup() : ''
         }}>
