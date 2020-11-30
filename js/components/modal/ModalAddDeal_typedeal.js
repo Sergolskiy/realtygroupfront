@@ -35,8 +35,8 @@ export class ModalAddDeal_typedeal extends React.Component {
             onClick={() => clickTypeDeal('sale', 'object')}>Продам
           </div>
         </div>
-        < /div>
         }
+      </div>
     )
   }
 }
