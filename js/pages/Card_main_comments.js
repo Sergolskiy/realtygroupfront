@@ -18,6 +18,8 @@ export class Card_main_comments extends React.PureComponent {
     editComment: '',
     editCommentIndex: '',
     cardId: '',
+    comment: this.props.comment,
+    loading: false,
   }
 
   componentDidMount() {
@@ -60,10 +62,11 @@ export class Card_main_comments extends React.PureComponent {
       const comment = JSON.stringify(comments_arr);
 
       $sendMessageZone.addClass('disabled');
-      put_card(card_id, {comment}).done(function (newCardInfo) {
+      put_card(card_id, {comment}).done((newCardInfo) => {
         input.value = '';
         // changeState({comment});
         changeStateCard({cardInfo: newCardInfo, cardInfoInitial: Object.assign({}, newCardInfo)})
+        this.setState({comment: this.props.comment})
       }).always(function () {
         $sendMessageZone.removeClass('disabled');
       })
@@ -79,16 +82,30 @@ export class Card_main_comments extends React.PureComponent {
   };
 
   editComment = () => {
-   let data = {
-     commentText: this.state.editComment,
-     commentKey: this.state.editCommentIndex,
-     cardId: this.state.cardId,
-   }
+    const {changeStateCard} = this.props;
+    let comment = JSON.parse(this.state.comment);
 
-    update_commet(data).done((response) => {
-      console.log(response);
-      console.log(JSON.parse(response.comment)[this.state.editCommentIndex].post);
-      document.querySelector('div[data-comment-id="'+this.state.editCommentIndex+'"]').innerHTML = JSON.parse(response.comment)[this.state.editCommentIndex].post
+    comment[this.state.editCommentIndex].post = this.state.editComment;
+    comment = JSON.stringify(comment);
+
+    let data = {
+      commentString: comment,
+      cardId: this.state.cardId,
+    }
+
+    // let data = {
+    //   commentText: this.state.editComment,
+    //   commentKey: this.state.editCommentIndex,
+    //   cardId: this.state.cardId,
+    // }
+
+    update_commet(data).done((newCardInfo) => {
+      changeStateCard({cardInfo: newCardInfo, cardInfoInitial: Object.assign({}, newCardInfo)})
+      this.setState({comment: this.props.comment, loading: false});
+
+      // console.log(response);
+      // console.log(JSON.parse(response.comment)[this.state.editCommentIndex].post);
+      // document.querySelector('div[data-comment-id="' + this.state.editCommentIndex + '"]').innerHTML = JSON.parse(response.comment)[this.state.editCommentIndex].post
       this.closeEditPopup();
     }).fail(() => {
       alert('Ошибка при редактировании')
@@ -97,14 +114,24 @@ export class Card_main_comments extends React.PureComponent {
   };
 
   removeComment = (index, card_id) => {
-   let data = {
-     commentKey: index,
-     cardId: card_id,
-   }
+    const {changeStateCard} = this.props;
 
-    remove_comment(data).done((response) => {
-      console.log(response);
-      document.querySelector('div[data-comment-id="'+index+'"]').parentNode.parentNode.remove()
+    let comment = JSON.parse(this.state.comment);
+
+    comment.splice(index, 1);
+    comment = JSON.stringify(comment);
+
+    let data = {
+      commentString: comment,
+      cardId: card_id,
+    }
+
+    this.setState({loading: true})
+
+    remove_comment(data).done((newCardInfo) => {
+      changeStateCard({cardInfo: newCardInfo, cardInfoInitial: Object.assign({}, newCardInfo)})
+      this.setState({comment: this.props.comment, loading: false});
+      // document.querySelector('div[data-comment-id="'+index+'"]').parentNode.parentNode.remove()
     }).fail(() => {
       alert('Ошибка при удалении')
     })
@@ -117,7 +144,7 @@ export class Card_main_comments extends React.PureComponent {
     const {users} = this.props;
     console.log(this.props);
 
-    const comments_arr = json_parse(this.props.comment);
+    const comments_arr = json_parse(this.state.comment);
 
     const {card_id} = this.props;
 
@@ -153,12 +180,17 @@ export class Card_main_comments extends React.PureComponent {
                   <div className="comments-chat-message-edit">
                     <i className="mdi mdi-pencil btn-style" title="Редактировать комментарий"
                        onClick={() => {
-                         this.setState({isOpenEdit: true, editComment: comment.post, editCommentIndex: index, cardId: card_id})
+                         this.setState({
+                           isOpenEdit: true,
+                           editComment: comment.post,
+                           editCommentIndex: index,
+                           cardId: card_id
+                         })
                        }}/>
 
-                    <i className="mdi mdi-window-close cursor-pointer"
+                    <i className={"mdi mdi-window-close cursor-pointer" + (this.state.loading ? ' event-none' : '')}
                       // data-user-id={user.id}
-                      onClick={() => this.removeComment(index, card_id)}
+                       onClick={() => this.removeComment(index, card_id)}
                        title="Удалить комментарий"/>
                   </div>
                   }
@@ -181,31 +213,31 @@ export class Card_main_comments extends React.PureComponent {
       </div>
 
       {role === 'ROLE_ADMIN' &&
-        <div className={"popup-edit-comment custom-popup" + (this.state.isOpenEdit ? ' open' : '')} onClick={(e) => {
-          e.target.classList[0] === 'popup-edit-comment' ? this.closeEditPopup() : ''
-        }}>
-          {this.state.isOpenEdit}
-          <div className="custom-popup__inner">
-            <div className="custom-popup__header">
-              <div className="custom-popup__name">
-                Редактировать комментарий
-              </div>
-              <div className="custom-popup__close" onClick={this.closeEditPopup}>
-                ✖
-              </div>
+      <div className={"popup-edit-comment custom-popup" + (this.state.isOpenEdit ? ' open' : '')} onClick={(e) => {
+        e.target.classList[0] === 'popup-edit-comment' ? this.closeEditPopup() : ''
+      }}>
+        {this.state.isOpenEdit}
+        <div className="custom-popup__inner">
+          <div className="custom-popup__header">
+            <div className="custom-popup__name">
+              Редактировать комментарий
             </div>
-            <div className="custom-popup__content">
-              <input className="w-100 p-1" defaultValue={this.state.editComment}
-                     onChange={e => this.setState({editComment: e.target.value})}/>
-
-              <div className="custom-popup__btn">
-                <button className="btn btn-outline-primary" onClick={this.closeEditPopup}>отменить</button>
-                <button className="btn btn-outline-success" onClick={this.editComment}>Изменить</button>
-              </div>
-
+            <div className="custom-popup__close" onClick={this.closeEditPopup}>
+              ✖
             </div>
           </div>
+          <div className="custom-popup__content">
+            <input className="w-100 p-1" defaultValue={this.state.editComment}
+                   onChange={e => this.setState({editComment: e.target.value})}/>
+
+            <div className="custom-popup__btn">
+              <button className="btn btn-outline-primary" onClick={this.closeEditPopup}>отменить</button>
+              <button className="btn btn-outline-success" onClick={this.editComment}>Изменить</button>
+            </div>
+
+          </div>
         </div>
+      </div>
       }
 
     </>

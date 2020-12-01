@@ -1144,8 +1144,8 @@ function update_commet(data) {
 // Удалить Comment
 function remove_comment(data) {
   return $.ajax({
-    url: url_backend + `/api/delete-comment`,
-    type: 'POST',
+    url: url_backend + `/api/update-comment`,
+    type: 'PUT',
     dataType: 'json',
     beforeSend: setHeader,
     data: data

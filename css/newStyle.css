@@ -184,3 +184,7 @@
   border: 1px solid black;
   padding: 5px;
 }
+
+.event-none{
+  pointer-events: none;
+}
