@@ -22,6 +22,11 @@
   margin-bottom: 15px;
 }
 
+.settings-ip{
+  display: flex;
+  justify-content: center;
+}
+
 .settings-ip input,
 .login-page .form input{
   background-color: hsl(0,0%,100%);
@@ -84,8 +89,14 @@
 }
 
 .checkin-page{
-  width: 740px;
+  display: flex;
+  width: 1400px;
   margin-bottom: 400px;
+}
+
+.checkin-page .settings-table-permissions{
+  min-width: 650px;
+  margin-top: 0;
 }
 
 .checkin-page form{
@@ -100,12 +111,15 @@
 
 .settings-ip__inner{
   padding: 0 20px;
+  max-width: 660px;
+  width: 100%;
 }
 
 .settings-ip__add{
   display: flex;
   flex-direction: column;
   max-width: 460px;
+  margin-top: 40px;
 }
 
 .settings-ip__add input{
@@ -119,7 +133,7 @@
   padding: 20px;
   border: 1px solid #eee;
   margin: 20px 0;
-  max-width: 460px;
+  max-width: 660px;
 }
 
 .settings-ip__item{

@@ -196,55 +196,83 @@ export class Checkin extends React.PureComponent {
                 <Link to="/8e4c494bb5f3cf91444c82103579b1ba" className="btn btn-danger m-1">Зарегистрировать ещё</Link>
               </div>
             </div> :
-            <div className="form">
-              <form onSubmit={register}>
+            <React.Fragment>
+
+              <div className="form">
+                <form onSubmit={register}>
+
+                  <input className={validateMail ? '' : '_error'} type="text" placeholder="E-mail"/>
+                  <input className={validatePas ? '' : '_error'} type="password" placeholder="Пароль"/>
+                  <input className={validateCPas ? '' : '_error'} type="password" placeholder="Пароль (подтверждение)"/>
+                  <input className={validateName ? '' : '_error'} type="text" placeholder="Имя"/>
+                  <input className={validateSurname ? '' : '_error'} type="text" placeholder="Фамилия"/>
+                  <input className={validateMiddleName ? '' : '_error'} type="text" placeholder="Отчество"/>
+
+                  <Select
+                    styles={{
+                      ...selectStyleDefault
+                    }}
+                    isMulti={false}
+                    isClearable={false}
+                    isSearchable={false}
+                    className="w-100 login-select"
+                    placeholder={'Роль'}
+                    options={this.state.roles}
+                    onChange={el => {
+                      this.setState({rolesId: el})
+                    }
+                    }
+                  />
+                  <Select
+                    isMulti={true}
+                    isClearable={false}
+                    isSearchable={false}
+                    className="w-100 mb-15"
+                    placeholder={'Права'}
+                    options={this.state.permissions}
+                    onChange={el => {
+                      console.log(el);
+                      this.setState({permissionsIds: el})
+                    }
+                    }
+                  />
 
 
-                <input className={validateMail ? '' : '_error'} type="text" placeholder="E-mail"/>
-                <input className={validatePas ? '' : '_error'} type="password" placeholder="Пароль"/>
-                <input className={validateCPas ? '' : '_error'} type="password" placeholder="Пароль (подтверждение)"/>
-                <input className={validateName ? '' : '_error'} type="text" placeholder="Имя"/>
-                <input className={validateSurname ? '' : '_error'} type="text" placeholder="Фамилия"/>
-                <input className={validateMiddleName ? '' : '_error'} type="text" placeholder="Отчество"/>
+                  <button>
+                    <span className={loader ? 'd-none' : ''}>Зарегистрироваться</span>
+                    <div className={'lds-dual-ring' + (loader ? '' : ' d-none')}/>
+                  </button>
+                  <div>{message}</div>
+                  {/*<p className="message">Уже зарегистрированы? <a onClick={toggleForm}>Войти</a></p>*/}
+                </form>
+              </div>
 
-                <Select
-                  styles={{
-                    ...selectStyleDefault
-                  }}
-                  isMulti={false}
-                  isClearable={false}
-                  isSearchable={false}
-                  className="w-100 login-select"
-                  placeholder={'Роль'}
-                  options={this.state.roles}
-                  onChange={el => {
-                    this.setState({rolesId: el})
-                  }
-                  }
-                />
-                <Select
-                  isMulti={true}
-                  isClearable={false}
-                  isSearchable={false}
-                  className="w-100 mb-15"
-                  placeholder={'Права'}
-                  options={this.state.permissions}
-                  onChange={el => {
-                    console.log(el);
-                    this.setState({permissionsIds: el})
-                  }
-                  }
-                />
+              <div className="settings-table-permissions">
+                <p>Справочник прав пользователей</p>
 
+                <table>
+                  <tr>
+                    <th>
+                      Название
+                    </th>
+                    <th>
+                      Описание
+                    </th>
+                  </tr>
+                  {this.state.permissions.map((item, index) => {
+                    return (
+                      <tr key={index}>
+                        <td>{item.label}</td>
+                        <td>{item.descriptions}</td>
+                      </tr>
+                    )
+                  })}
 
-                <button>
-                  <span className={loader ? 'd-none' : ''}>Зарегистрироваться</span>
-                  <div className={'lds-dual-ring' + (loader ? '' : ' d-none')}/>
-                </button>
-                <div>{message}</div>
-                {/*<p className="message">Уже зарегистрированы? <a onClick={toggleForm}>Войти</a></p>*/}
-              </form>
-            </div>
+                </table>
+              </div>
+
+            </React.Fragment>
+
         }
       </div>
     )

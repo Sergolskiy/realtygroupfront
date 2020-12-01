@@ -13,20 +13,29 @@ export class Settings_IP extends React.PureComponent {
     editId: '',
     editIp: '',
     editDescription: '',
+    editUsers: '',
     isOpenEdit: false,
     active: false,
+    usersEditSelect: '',
+
+    users: [],
   };
 
 
   componentDidMount() {
 
-    check_active_ip().done((response) => {
-      console.log(response.data[0].value);
-      if (response.data[0].value === '1') {
-        this.getIpAddress();
-        this.setState({active: true})
-      }
+    get_all_users().done((response) => {
+      this.setState({users: response.data});
+
+      check_active_ip().done((response) => {
+        console.log(response.data[0].value);
+        if (response.data[0].value === '1') {
+          this.getIpAddress();
+          this.setState({active: true})
+        }
+      })
     })
+
   }
 
   changeActiveIp = () => {
@@ -52,13 +61,24 @@ export class Settings_IP extends React.PureComponent {
   }
 
   addIpAddress = () => {
+    let editUsers = this.state.editUsers;
+
     let data = {
       ip: this.state.ip,
-      description: this.state.description
+      description: this.state.description,
     }
+
+    editUsers.map((item) => {
+      data['userIds[' + item.id + ']'] = item.id;
+    });
+
     add_access_ip(data).done((response) => {
       console.log(response);
       this.getIpAddress();
+
+      document.getElementById('ip').value = '';
+      document.getElementById('desc').value = '';
+      this.setState({editUsers: ''})
     }).fail((error) => {
       alert('Неправильный айпи пример 188.163.19.116');
     })
@@ -76,10 +96,18 @@ export class Settings_IP extends React.PureComponent {
   };
 
   updateIpAddress = () => {
+
+    let usersEditSelect = this.state.usersEditSelect;
+
     let data = {
       ip: this.state.editIp,
       description: this.state.editDescription
     }
+
+    usersEditSelect.map((item) => {
+      data['userIds[' + item.id + ']'] = item.id;
+    });
+
 
     update_access_ip(data, this.state.editId).done((response) => {
       console.log(response);
@@ -92,6 +120,7 @@ export class Settings_IP extends React.PureComponent {
 
   render() {
     console.log('render Settings_IP');
+
 
 
     return (
@@ -128,15 +157,30 @@ export class Settings_IP extends React.PureComponent {
                           {item.description}
                         </div>
 
+                        <div className="settings-ip__desc">
+                          {item.hasOwnProperty('ip_access_users') && item.ip_access_users.map((itemInner, index) => {
+                            return (
+                              <div key={index}>
+                                {itemInner.user.name + ' ' + itemInner.user.surname}
+                              </div>
+                            )
+                          })}
+                        </div>
+
                         <div className="settings-ip__remove">
                           <i className="mdi mdi-pencil btn-style" title="Редактировать пользователя"
                              style={{marginRight: 10}}
                              onClick={() => {
+                               let users = [];
+                               item.ip_access_users.map((itemInner) => {
+                                 users.push(itemInner.user)
+                               });
                                this.setState({
                                  isOpenEdit: true,
                                  editIp: item.ip,
                                  editDescription: item.description,
-                                 editId: item.id
+                                 editId: item.id,
+                                 usersEditSelect: users,
                                })
                              }}/>
                           <span onClick={() => this.removeIpAddress(item.id)}>✖</span>
@@ -149,22 +193,47 @@ export class Settings_IP extends React.PureComponent {
                 : 'Записей нет'}
 
 
-              <div className="settings-ip__add">
-                <div>
-                  <input type="text" placeholder="Ip" onChange={(e) => this.setState({ip: e.target.value})}/>
-                  <input type="text" placeholder="Описание"
-                         onChange={(e) => this.setState({description: e.target.value})}/>
-                </div>
-                <button className={'btn btn-success'} onClick={this.addIpAddress}>
-                  Добавить
-                </button>
 
-              </div>
             </React.Fragment>
             : null}
 
 
         </div>
+
+        {this.state.active &&
+          <div className="settings-ip__add">
+            <div>
+              <input type="text" placeholder="Ip" id={'ip'} onChange={(e) => this.setState({ip: e.target.value})}/>
+              <input type="text" placeholder="Описание"  id={'desc'}
+                     onChange={(e) => this.setState({description: e.target.value})}/>
+              <Select
+                id={'users'}
+                isMulti={true}
+                isClearable={false}
+                isSearchable={false}
+                className="w-100 mb-15"
+                placeholder={'Пользователи'}
+                options={this.state.users}
+                getOptionValue={user => user.id}
+                value={this.state.editUsers}
+                getOptionLabel={user => {
+                  if(user.is_archived === 1){
+                    return user.name +  user.surname + ' (удален)'
+                  }
+                  return user.name +  user.surname
+                }}
+                onChange={el => {
+                  this.setState({editUsers: el})
+                }
+                }
+              />
+            </div>
+            <button className={'btn btn-success'} onClick={this.addIpAddress}>
+              Добавить
+            </button>
+
+          </div>
+        }
 
         <div className={"popup-edit-comment custom-popup" + (this.state.isOpenEdit ? ' open' : '')} onClick={(e) => {
           e.target.classList[0] === 'popup-edit-comment' ? this.closeEditPopup() : ''
@@ -186,6 +255,30 @@ export class Settings_IP extends React.PureComponent {
               <br/>
               <input className="w-100 p-1" defaultValue={this.state.editDescription}
                      onChange={(e) => this.setState({editDescription: e.target.value})}/>
+
+              <br/>
+              <br/>
+              {console.log(this.state.usersEditSelect)}
+              <Select
+                isMulti={true}
+                isClearable={false}
+                isSearchable={false}
+                className="w-100 mb-15"
+                placeholder={'Пользователи'}
+                options={this.state.users}
+                value={this.state.usersEditSelect}
+                getOptionValue={user => user.id}
+                getOptionLabel={user => {
+                  if(user.is_archived === 1){
+                    return user.name +  user.surname + ' (удален)'
+                  }
+                  return user.name +  user.surname
+                }}
+                onChange={el => {
+                  this.setState({usersEditSelect: el})
+                }
+                }
+              />
 
               <div className="custom-popup__btn">
                 <button className="btn btn-outline-primary" onClick={this.closeEditPopup}>отменить</button>

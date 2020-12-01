@@ -490,6 +490,18 @@ function get_users(obj = {page: 1, size: 99999, is_archived: 0}) {
   })
 }
 
+// Все пользователи
+function get_all_users(obj = {page: 1, size: 99999}) {
+  return $.ajax({
+    url: url_backend + '/api/user',
+    type: 'GET',
+    dataType: 'json',
+    beforeSend: setHeader,
+    data: obj,
+    localCache: false
+  })
+}
+
 // Средняя информация о пользователе по ID
 function get_user(id, localCache, cacheTTL, isCacheValid) {
   return $.ajax({
