@@ -283,7 +283,7 @@ class ModalAddDeal extends React.PureComponent {
         const hash = undefsafe(foundUser, 'user_details.profile_image.hash');
         const image_url = hash ? url_backend + '/public/uploads/files/' + hash : '/images/no_ava.jpg'; // '/images/substrate.png'
 
-
+        let permissions = JSON.parse(window.localStorage.getItem('access')).permissions;
 
         return (
             <>
@@ -402,16 +402,18 @@ class ModalAddDeal extends React.PureComponent {
                     }
 
                 </div>
-
-
-                <div className="modal-two-btns">
-                    <div className="border-right ripple" data-focus="modalAddDeal" onClick={addDeal}>
-                        Добавить
-                    </div>
-                    <div className="ripple" data-role="next" onClick={addDeal}>
-                        Далее<i className="mdi mdi-arrow-right"/>
-                    </div>
-                </div>
+                {console.log(permissions)}
+                {permissions.hasOwnProperty('cards') && permissions.cards.hasOwnProperty('add') ?
+                  <div className="modal-two-btns">
+                      <div className="border-right ripple" data-focus="modalAddDeal" onClick={addDeal}>
+                          Добавить
+                      </div>
+                      <div className="ripple" data-role="next" onClick={addDeal}>
+                          Далее<i className="mdi mdi-arrow-right"/>
+                      </div>
+                  </div>
+                  : null
+                }
 
             </>
         )

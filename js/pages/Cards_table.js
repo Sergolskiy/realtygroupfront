@@ -92,7 +92,7 @@ export class Cards_table extends React.PureComponent {
 
     loadData = () => {
         const {f_subcategory, f_city, f_area, f_street, f_stage, f_realtor, f_price_from, f_price_to, sort_field, sort_by, sort} = this.state;
-        const {dealtype, dealdirection, category, size, contacts_id} = this.props;
+        const {dealtype, dealdirection, category, size, contacts_id, defaultRealtor} = this.props;
         const {changeState} = this;
         const newState = {};
 
@@ -117,7 +117,7 @@ export class Cards_table extends React.PureComponent {
             price_to: f_price_to
         }
 
-        if(role === 'ROLE_ADMIN') {
+        if(role === 'ROLE_ADMIN' && defaultRealtor === f_realtor) {
             delete data.user_id;
         }
 
@@ -135,7 +135,7 @@ export class Cards_table extends React.PureComponent {
     };
 
     loadCards = page => {
-        const {dealtype, dealdirection, category, size, contacts_id} = this.props;
+        const {dealtype, dealdirection, category, size, contacts_id, defaultRealtor} = this.props;
         const {f_subcategory, f_city, f_area, f_street, f_stage, f_realtor, f_price_from, f_price_to, sort_field, sort_by, sort} = this.state;
         const {changeState} = this;
 
@@ -162,7 +162,7 @@ export class Cards_table extends React.PureComponent {
             price_to: f_price_to
         };
 
-        if(role === 'ROLE_ADMIN') {
+        if(role === 'ROLE_ADMIN' && defaultRealtor === f_realtor) {
             delete data.user_id;
         }
 
@@ -177,7 +177,7 @@ export class Cards_table extends React.PureComponent {
 
     loadCardsMore = () => {
         const {dealtype, dealdirection, category, size, contacts_id} = this.props;
-        const {f_subcategory, f_city, f_area, f_street, f_stage, f_realtor, f_price_from, f_price_to, sort_field, sort_by, sort, cards, cards_query} = this.state;
+        const {f_subcategory, f_city, f_area, f_street, f_stage, f_realtor, defaultRealtor, f_price_from, f_price_to, sort_field, sort_by, sort, cards, cards_query} = this.state;
         const {changeState} = this;
 
 
@@ -204,7 +204,7 @@ export class Cards_table extends React.PureComponent {
             price_to: f_price_to
         };
 
-        if(role === 'ROLE_ADMIN') {
+        if(role === 'ROLE_ADMIN' && defaultRealtor === f_realtor) {
             delete data.user_id;
         }
 

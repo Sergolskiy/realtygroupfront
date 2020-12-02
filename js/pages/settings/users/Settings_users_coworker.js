@@ -223,7 +223,7 @@ export class Settings_users_coworker extends React.PureComponent {
                 className="w-100 login-select"
                 placeholder={'Пользователь'}
                 options={users}
-                getOptionLabel={users => users.middle_name}
+                getOptionLabel={users => users.name + ' ' + users.surname + ' ' + users.middle_name}
                 onChange={el => {
                   this.setState({userTransportID: el.id})
                 }

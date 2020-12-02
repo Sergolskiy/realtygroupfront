@@ -25,6 +25,7 @@
 .settings-ip{
   display: flex;
   justify-content: center;
+  padding-bottom: 285px;
 }
 
 .settings-ip input,

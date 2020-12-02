@@ -49,13 +49,13 @@ export class Add extends React.Component {
         let permissions = JSON.parse(window.localStorage.getItem('access')).permissions;
         return (
           <React.Fragment>
-              { permissions.hasOwnProperty('cards') && permissions.cards.hasOwnProperty('add') ?
-                    <div className="mr-md-2 text-success ripple circle-hover" onClick={this.openModalAdd}>
-                        <i className="mdi mdi-loupe fs32 d-none d-md-inline"/>
-                        <i className="mdi mdi-loupe fs24 d-inline d-md-none"/>
-                    </div>
-                    : null
-              }
+
+            <div className="mr-md-2 text-success ripple circle-hover" onClick={this.openModalAdd}>
+                <i className="mdi mdi-loupe fs32 d-none d-md-inline"/>
+                <i className="mdi mdi-loupe fs24 d-inline d-md-none"/>
+            </div>
+
+
           </React.Fragment>
         )
     }
