@@ -8,6 +8,7 @@ import {MenuList} from "../elements/MenuList";
 import {User_photo} from "../elements/User_photo";
 import {Th_stage} from "../elements/Th_stage";
 import {Cards_td_description_comment} from "./Cards_td_description_comment";
+import {Pagination} from "../elements/Pagination";
 
 
 // dealtype - rent, sale (опция)
@@ -117,12 +118,21 @@ export class Cards_table extends React.PureComponent {
             price_to: f_price_to
         }
 
+        // let savePage = 1;
+
+        if(localStorage.getItem('savePage')) {
+            data = JSON.parse(localStorage.getItem('savePage'));
+            localStorage.removeItem('savePage')
+        }
+
         if(role === 'ROLE_ADMIN' && defaultRealtor === f_realtor) {
             delete data.user_id;
         }
 
         $.when(
             get_cards_filtered(data).done(function (cards_query) {
+                // let cQ = cards_query
+                // cQ.current_page = savePage
                 Object.assign(newState, {
                     cards_query,
                     cards: cards_query.data || []
@@ -131,6 +141,10 @@ export class Cards_table extends React.PureComponent {
         ).done(function () {
             Object.assign(newState, {loading: false});
             changeState(newState)
+            console.log(newState);
+            if(localStorage.getItem('savePosition')){
+                document.querySelector('.wh-100').scrollTop = localStorage.getItem('savePosition')
+            }
         })
     };
 
@@ -369,6 +383,37 @@ export class Cards_table extends React.PureComponent {
         document.getElementById('card' + e.currentTarget.dataset.cardId).click()
     };
 
+    savePage = () => {
+        const {dealtype, dealdirection, category, size, contacts_id} = this.props;
+        const {f_subcategory, f_city, f_area, f_street, f_stage, f_realtor, f_price_from, f_price_to, sort, cards_query} = this.state;
+
+
+        let data = {
+            // page: 1,
+            // size: size * cards_query.current_page,
+            page: cards_query.current_page,
+            size,
+            // sort: sort_field + ',' + sort_by,
+            sort: sort,
+            type: dealtype,
+            sale_type: dealdirection,
+            category,
+            contacts_id,
+            subcategory: f_subcategory,
+            city: f_city,
+            area: f_area,
+            street: f_street,
+            stage_transaction: f_stage,
+            user_id: f_realtor,
+            price_from: f_price_from,
+            price_to: f_price_to
+        };
+
+        localStorage.setItem('savePage', JSON.stringify(data))
+        localStorage.setItem('savePosition', ''+document.querySelector('.wh-100').scrollTop)
+
+    }
+
     render() {
         console.log('render Cards_table');
 
@@ -418,6 +463,7 @@ export class Cards_table extends React.PureComponent {
         const optionsStreets = Object.keys(streets).map(key => ({value: key, label: streets[key]}));
         const defaultValueStreets = s_street ? {value: s_street, label: streets[s_street]} : null;
 
+        const that = this
 
 
 
@@ -476,7 +522,7 @@ export class Cards_table extends React.PureComponent {
 
                         {/*Подтип, город, район, улица*/}
                         <td>
-                            <Link to={link} id={"card" + cardInfo.id}>
+                            <Link to={link} onClick={that.savePage} id={"card" + cardInfo.id}>
                                 <div className="title-card">
                                     <div>{subcategory_title}</div>
                                     <div>{location_titles}</div>
@@ -974,20 +1020,21 @@ export class Cards_table extends React.PureComponent {
 
                 {/*<div>{total_cards} всего карточек</div>*/}
 
-                {
-                    current_page < last_page &&
-                    <div className="flex-center mb-2">
-                        <button className="btn btn-outline-primary btn-sm" onClick={this.loadCardsMore}>
-                            <span><i className="mdi mdi-refresh"/> Показать ещё {to} / {total}</span>
-                        </button>
-                    </div>
-                }
+                {/*{*/}
+                    {/*current_page < last_page &&*/}
+                    {/*<div className="flex-center mb-2">*/}
+                        {/*<button className="btn btn-outline-primary btn-sm" onClick={this.loadCardsMore}>*/}
+                            {/*<span><i className="mdi mdi-refresh"/> Показать ещё {to} / {total}</span>*/}
+                        {/*</button>*/}
+                    {/*</div>*/}
+                {/*}*/}
 
-                {/*<Pagination*/}
-                {/*    last_page={last_page}*/}
-                {/*    current_page={current_page}*/}
-                {/*    load={this.loadCards}*/}
-                {/*/>*/}
+                <br/>
+                <Pagination
+                    last_page={last_page}
+                    current_page={current_page}
+                    load={this.loadCards}
+                />
 
             </>
         )

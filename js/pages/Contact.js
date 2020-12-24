@@ -201,7 +201,7 @@ export class Contact extends React.PureComponent {
 
                     {
                         // isTabMainShow && rightEditDel && (
-                          isTabMainShow && permissions.hasOwnProperty('editDelContacts') && permissions.editDelContacts.hasOwnProperty('edit') &&
+
                           (
                             isEdit ?
                             <div className="d-flex align-items-center ml-auto">
@@ -210,8 +210,12 @@ export class Contact extends React.PureComponent {
                             </div>
                             :
                             <div className="d-flex align-items-center ml-auto">
-                                <ButtonEdit handler={edit}/>
-                                <ButtonDel modalId="modalDelContact"/>
+                                { isTabMainShow && permissions.hasOwnProperty('editContacts') && permissions.editContacts.hasOwnProperty('edit') &&
+                                    <ButtonEdit handler={edit}/>
+                                }
+                                { isTabMainShow && permissions.hasOwnProperty('dellContacts') && permissions.dellContacts.hasOwnProperty('delete') &&
+                                    <ButtonDel modalId="modalDelContact"/>
+                                }
                             </div>
                         )
                     }

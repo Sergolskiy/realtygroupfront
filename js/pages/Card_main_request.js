@@ -68,6 +68,8 @@ export class Card_main_request extends React.PureComponent {
             user_profile_id === cardInfo.card_user.id || // Если юзер владелец карточки
             data.rights.seeCardContact[typedeal].includes(user_profile_id); // Если юзер есть в списке разрешённых
 
+        let permissions = JSON.parse(window.localStorage.getItem('access')).permissions;
+
         return (
             <div className="Card_main">
 
@@ -164,7 +166,8 @@ export class Card_main_request extends React.PureComponent {
 
 
                         {
-                            seeCardContact &&
+                            // seeCardContact &&
+                            permissions.hasOwnProperty('seeCardContact') && permissions.seeCardContact.hasOwnProperty('see') &&
                             <tr>
                                 <td>
                                     <i className="mdi mdi-account-outline color-darkgray fs22"

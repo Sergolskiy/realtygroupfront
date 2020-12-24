@@ -122,6 +122,8 @@ export class Card_suitable_tr extends React.PureComponent {
 
         const presentationMode = stor.local.get('presentationMode');
 
+        let permissions = JSON.parse(window.localStorage.getItem('access')).permissions;
+
         return (
 
             <tr data-card-id={cardInfo.id} onDoubleClick={trDoubleClick}>
@@ -271,7 +273,7 @@ export class Card_suitable_tr extends React.PureComponent {
                     <>
                         <td>
                             {
-                                seeCardContact ? cards_contacts_phones.map(item =>
+                                permissions.hasOwnProperty('seeCardContact') && permissions.seeCardContact.hasOwnProperty('see') ? cards_contacts_phones.map(item =>
                                     <div key={item.id}>
                                         <a title="Viber" href={window.device.desktop() ?
                                             `viber://chat?number=${item.phone}` :

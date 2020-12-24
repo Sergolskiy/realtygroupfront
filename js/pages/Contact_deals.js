@@ -31,7 +31,8 @@ export class Contact_deals extends React.PureComponent {
             get_cards_filtered({
                 page: 1,
                 size,
-                contacts_id
+                contacts_id,
+                // detachPermission: true
             }).done(function (cards_query) {
                 Object.assign(newState, {
                     cards_query,
