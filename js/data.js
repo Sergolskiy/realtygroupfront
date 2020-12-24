@@ -1,6 +1,6 @@
 const production = location.hostname === 'crm.realtygroup.biz';
-// const url_backend = production ? 'https://crm-backend.realtygroup.biz' : 'http://crm.prokachu.com';
-const url_backend = production ? 'https://crm-backend.realtygroup.biz' : 'https://realty-back';
+const url_backend = production ? 'https://crm-backend.realtygroup.biz' : 'http://crm.prokachu.com';
+// const url_backend = production ? 'https://crm-backend.realtygroup.biz' : 'https://realty-back';
 
 const data = {
 
